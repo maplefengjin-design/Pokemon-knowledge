@@ -1,0 +1,34 @@
+# Local secrets and machine-specific configuration
+config/llm.env
+.env
+.env.*
+!.env.example
+
+# Python caches, environments and build products
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Runtime output
+logs/
+*.log
+
+# Reproducible upstream snapshots and generated databases. Use tools/sync_*.ps1
+# followed by tools/build_pilot.py to recreate them locally.
+data/raw/
+data/curated/*.db
+data/curated/*.db-*
+data/curated/*.building
+
+# Editor and OS metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
