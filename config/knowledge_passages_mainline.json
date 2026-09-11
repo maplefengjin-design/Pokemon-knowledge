@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "default_generation": 9,
+  "default_ruleset": "scarlet-violet",
+  "documents": [
+    {
+      "document_id": "mainline-move-metronome",
+      "title": "挥指：主系列招式机制",
+      "edition_id": "mainline",
+      "source_name": "神奇宝贝百科（机制核验参考）",
+      "source_url": "https://wiki.52poke.com/wiki/挥指（招式）",
+      "source_kind": "community_reference_curated_summary",
+      "license_identifier": "CC-BY-NC-SA-3.0",
+      "retrieved_at": "2026-09-10",
+      "source_revision": "page-checked-2026-09-10",
+      "passages": [
+        {
+          "passage_id": "metronome-current-selection",
+          "section_path": "招式附加效果 > 随机选择规则",
+          "heading": "第九世代的选择流程",
+          "content": "第九世代主系列中，挥指会从招式池随机抽取招式；抽到不可使用的招式时重新抽取，直到得到可使用招式。若循环超过500次，则改为使用拍击。第一世代只排除挥指和挣扎；第二至第八世代则先建立排除后的候选池，再从候选池等概率选择，因此不同世代不能混用同一套实现。",
+          "generation_from": 9,
+          "generation_to": 9,
+          "version_group": "scarlet-violet",
+          "entities": [
+            {"entity_type": "move", "identifier": "metronome", "relation_kind": "subject"}
+          ]
+        },
+        {
+          "passage_id": "metronome-excluded-moves",
+          "section_path": "招式附加效果 > 不会使出的招式",
+          "heading": "挥指不会选择的招式",
+          "content": "挥指的排除目录按机制类别整理如下。调用其他招式：挥指、梦话、仿效、鹦鹉学舌、自然之力、借助、抢先一步。变成其他招式：模仿、写生、变身。同回合准备并攻击：真气拳、鸟嘴加农炮、陷阱甲壳。防住类：守住、看穿、挺住、广域防守、快速防守、掀榻榻米、戏法防守、王者盾牌、尖刺防守、碉堡、拦堵、线阱、火焰守护。万众瞩目类：看我嘛、愤怒粉、聚光灯。部分反射类：双倍奉还、镜面反射、复仇。改变其他宝可梦行动顺序：您先请、延后、号令。涉及夺取或交换携带物的部分招式：戏法、掉包、传递礼物、渴望、小偷。另排除帮助、抢夺、佯攻、同命、打嗝、喋喋不休、打鼾、挣扎，以及Z招式、极巨招式和当前世代不能在战斗中使用的招式。部分配信、幻之宝可梦、传说的宝可梦、搭档宝可梦、剧情对手与其他专用招式也被排除；这部分名单会随新作扩展，回答具体招式时应以本章节来源版本和目标游戏再次核验。",
+          "generation_from": 9,
+          "generation_to": 9,
+          "version_group": "scarlet-violet",
+          "entities": [
+            {"entity_type": "move", "identifier": "metronome", "relation_kind": "subject"},
+            {"entity_type": "move", "identifier": "protect", "relation_kind": "excluded_member"},
+            {"entity_type": "move", "identifier": "struggle", "relation_kind": "excluded_member"}
+          ]
+        },
+        {
+          "passage_id": "metronome-interactions",
+          "section_path": "招式附加效果 > 特殊互动",
+          "heading": "挥指与其他效果的互动",
+          "content": "挥指不能被模仿复制，也不会被借助或梦话发动。己方最后使用的招式是挥指时，以自己为目标使用再来一次会失败。挥指调用到恢复HP的招式时，可无视回复封锁而恢复HP。携带节拍器连续使用挥指且连续随机到相同攻击招式时，节拍器仍可按连续使用规则提升威力。",
+          "generation_from": 9,
+          "generation_to": 9,
+          "version_group": "scarlet-violet",
+          "entities": [
+            {"entity_type": "move", "identifier": "metronome", "relation_kind": "subject"},
+            {"entity_type": "move", "identifier": "encore", "relation_kind": "interaction"}
+          ]
+        }
+      ]
+    },
+    {
+      "document_id": "mainline-move-encore",
+      "title": "再来一次：主系列招式机制",
+      "edition_id": "mainline",
+      "source_name": "神奇宝贝百科（机制核验参考）",
+      "source_url": "https://wiki.52poke.com/wiki/再来一次（招式）",
+      "source_kind": "community_reference_curated_summary",
+      "license_identifier": "CC-BY-NC-SA-3.0",
+      "retrieved_at": "2026-09-10",
+      "source_revision": "page-checked-2026-09-10",
+      "passages": [
+        {
+          "passage_id": "encore-current-effect",
+          "section_path": "招式附加效果 > 当前效果",
+          "heading": "第九世代的持续时间与目标",
+          "content": "第九世代主系列中，再来一次令目标接下来的3回合只能使用其最后使用的招式。它是命中100、PP 5的变化招式，受守住和魔法反射影响。若目标不能继续使用被锁定的招式，再来一次状态会依相应解除规则处理。",
+          "generation_from": 9,
+          "generation_to": 9,
+          "version_group": "scarlet-violet",
+          "entities": [
+            {"entity_type": "move", "identifier": "encore", "relation_kind": "subject"}
+          ]
+        },
+        {
+          "passage_id": "encore-failure-conditions",
+          "section_path": "招式附加效果 > 使用失败条件",
+          "heading": "再来一次会失败的情况",
+          "content": "再来一次在以下情况下使用失败：目标入场后还没有使用过招式；目标最后使用招式的PP已经为0；最后使用的是再来一次、模仿、写生、挣扎或变身；最后使用的是调用其他招式的招式，包括借助、仿效、抢先一步、挥指、鹦鹉学舌、自然之力或梦话；最后使用的是Z招式或极巨炮；目标最后的行动是极巨化宝可梦使用的招式；或者目标最后使用的是天星队车的专属招式。具体游戏若不存在其中某种战斗系统，对应条目自然不适用。",
+          "generation_from": 9,
+          "generation_to": 9,
+          "version_group": "scarlet-violet",
+          "entities": [
+            {"entity_type": "move", "identifier": "encore", "relation_kind": "subject"},
+            {"entity_type": "move", "identifier": "metronome", "relation_kind": "failure_trigger"}
+          ]
+        },
+        {
+          "passage_id": "encore-generation-history",
+          "section_path": "招式变更 > 世代差异",
+          "heading": "再来一次的历史变化",
+          "content": "再来一次的持续时间曾多次变化：第二世代为2至5回合，第三世代改为2至6回合，第四世代改为3至7回合，第五世代起固定为3回合。第五世代还改为受魔法反射影响，并允许重新指定被锁定招式的目标；第七世代进一步增加了对调用其他招式与Z招式等情况的失败判定。",
+          "generation_from": 2,
+          "generation_to": 7,
+          "entities": [
+            {"entity_type": "move", "identifier": "encore", "relation_kind": "subject"}
+          ]
+        }
+      ]
+    }
+  ]
+}

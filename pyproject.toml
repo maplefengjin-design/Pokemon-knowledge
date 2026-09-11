@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pokemon-knowledge"
+version = "0.1.0"
+description = "Version-aware Pokémon knowledge base with a future PokeMMO overlay"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{name = "Pokemon Knowledge contributors"}]
+dependencies = []
+
+[project.optional-dependencies]
+api = ["fastapi>=0.115", "uvicorn>=0.34"]
+dev = ["pytest>=8.3", "jsonschema>=4.23", "pyyaml>=6.0"]
+
+[project.scripts]
+pokemon-kb = "pokemon_knowledge.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pokemon_knowledge"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,148 @@
+# 数据源注册表示例。生产构建必须把 ref 替换为经过评测的固定 commit SHA。
+schema_version: 1
+as_of: "2026-09-09"
+
+policy:
+  allow_unpinned_git_ref: false
+  publish_raw_assets: false
+  ingest_official_site_pages: false
+  require_sha256_manifest: true
+  conflict_strategy: preserve_and_review
+
+editions:
+  - id: mainline
+    display_name: 官方版（原作全世代）
+    base_edition: null
+  - id: pokemmo
+    display_name: PokeMMO 特别版
+    base_edition: mainline
+
+inheritance_policy:
+  auto:
+    - national_pokedex_number
+    - localized_name
+    - species_family
+  require_explicit_same_or_override:
+    - types
+    - base_stats
+    - abilities
+    - move_parameters
+    - learnset
+    - evolution
+    - egg_groups
+    - catch_rate
+    - breeding_rules
+  never:
+    - encounter
+    - alpha_mechanics
+    - economy
+    - shop_inventory
+    - pvp_tier
+    - temporary_event
+
+sources:
+  - id: pokeapi-csv
+    enabled: true
+    authority_tier: B
+    kind: git
+    url: https://github.com/PokeAPI/pokeapi.git
+    ref: REPLACE_WITH_COMMIT_SHA
+    include:
+      - data/v2/csv/**
+    license: BSD-3-Clause
+    role: primary_structured_source
+    notes: Community-maintained; do not label as an official Pokémon API.
+
+  - id: pokeapi-static-json
+    enabled: false
+    authority_tier: B
+    kind: git
+    url: https://github.com/PokeAPI/api-data.git
+    ref: REPLACE_WITH_COMMIT_SHA
+    include:
+      - data/api/v2/**
+      - data/schema/**
+    license: BSD-3-Clause
+    role: alternative_json_snapshot
+    notes: Enable instead of, not in addition to, pokeapi-csv for the first MVP.
+
+  - id: pokedb-generation-json
+    enabled: false
+    authority_tier: C
+    kind: git
+    url: https://github.com/zhenga8533/pokedb.git
+    ref: REPLACE_WITH_COMMIT_SHA
+    license: MIT
+    role: schema_and_generation_reference
+    notes: Preserve unverified_historical_fields if generated data is imported.
+
+  - id: pokemon-showdown
+    enabled: true
+    authority_tier: C
+    kind: git
+    url: https://github.com/smogon/pokemon-showdown.git
+    ref: d849b220082e113d8a17303509fb44d420c543d5
+    include:
+      - data/moves.ts
+      - sim/dex-moves.ts
+      - LICENSE
+    license: MIT
+    role: battle_rules_extension
+    notes: Community battle implementation used for current main-series move flags; allyanim is excluded because it only controls presentation.
+
+  - id: chinese-wiki-derived-dataset
+    enabled: false
+    authority_tier: D
+    kind: git
+    url: https://github.com/Luxcis/pokemon-dataset-zh.git
+    ref: REPLACE_WITH_COMMIT_SHA
+    license: MIT-repository-license-only
+    role: internal_gap_analysis
+    notes: Upstream text was scraped from 52poke and images have separate rights; do not republish by default.
+
+  - id: pokemon-official-web
+    enabled: false
+    authority_tier: A
+    kind: manual-links-only
+    url: https://www.pokemon.com/us/pokedex
+    role: manual_verification
+    notes: Do not bulk download or mirror. Store URL, date, reviewer and a minimal verification note only.
+
+  - id: pokemmo-official-forum
+    enabled: false
+    edition: pokemmo
+    authority_tier: A
+    kind: reviewed-documents
+    url: https://forums.pokemmo.com/
+    role: pokemmo_changelog_and_rules
+    notes: Whitelist official staff announcements; preserve publish/effective time and reviewer evidence.
+
+  - id: pokemmo-tools-data
+    enabled: false
+    edition: pokemmo
+    authority_tier: C
+    kind: git
+    url: https://github.com/PokeMMO-Tools/pokemmo-data.git
+    ref: REPLACE_WITH_COMMIT_SHA
+    role: pokemmo_candidate_overlays
+    notes: Community and unaffiliated. Import only categories obtained through client-supported export; exclude unsupported memory/localization dumps.
+
+  - id: pokemmo-zone-data-archived
+    enabled: false
+    edition: pokemmo
+    authority_tier: D
+    kind: git
+    url: https://github.com/PokeMMOZone/PokeMMO-Data.git
+    ref: REPLACE_WITH_COMMIT_SHA
+    license: GPL-2.0
+    role: historical_cross_check_only
+    notes: Repository was archived in 2025 and marks some datasets incomplete.
+
+  - id: lzpoke
+    enabled: false
+    edition: pokemmo
+    authority_tier: C
+    kind: permission-required-web-or-api
+    url: https://tool.lzpoke.com/
+    role: chinese_pokemmo_reference
+    notes: Audit permission, terms, robots, endpoint stability and static/dynamic boundaries before enabling.
