@@ -22,6 +22,14 @@
 
 - 仓库：https://github.com/smogon/pokemon-showdown
 - 固定提交：`d849b220082e113d8a17303509fb44d420c543d5`
-- 用途：补充当前主系列规则中的招式机制分类，包括接触、切割、风、球和弹、拳、声音、波动等标记。
+- 用途：补充当前主系列规则中的招式机制分类、特性细分交互，以及宝可梦状态、队伍侧状态、天气、场地、空间效果与气场等对战条件。
 - 许可：MIT；Copyright © 2011–2026 Guangcong Luo and Pokémon Showdown contributors。
 - 限定：这是社区维护的对战规则实现，不表述为官方 API。项目只导入机械可判定的分类，排除仅用于界面动画的 `allyanim`。
+
+## 神奇宝贝百科特性信息框
+
+- 站点：https://wiki.52poke.com
+- 用途：通过公开 MediaWiki API 提取特性信息框中的 `Skillswap`、`Change`、`Trace`、`Noability`、`Transform` 和 `Entry` 字段，生成交换、覆盖、复制、无特性、变身和入场六项显式状态。
+- 可追溯性：`config/ability_infobox_mainline.json` 为每个页面记录 `page_id`、`revision_id`、修订时间及字段是否显式填写；默认值严格复现信息框模板逻辑。
+- 许可：CC BY-NC-SA 3.0，须署名、仅限非商业使用、相同方式共享。
+- 限定：该层是百科社区整理，不表述为官方 API；商业构建应禁用此层或另行取得许可并进行法律审查。

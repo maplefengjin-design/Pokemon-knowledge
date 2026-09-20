@@ -148,6 +148,37 @@ class KnowledgeService:
         return str(row[0])
 
     @staticmethod
+    def _pokemon_display_name(
+        species_name: str,
+        species_identifier: str,
+        pokemon_identifier: str,
+        localized_form_name: str | None,
+        is_mega: bool,
+    ) -> str:
+        if localized_form_name:
+            return localized_form_name
+        if not is_mega:
+            return species_name
+
+        before_mega, _, after_mega = pokemon_identifier.partition("-mega")
+        variant_key = before_mega.removeprefix(species_identifier).strip("-")
+        mega_suffix = {
+            "x": "Ｘ",
+            "y": "Ｙ",
+            "z": "Ｚ",
+        }.get(after_mega.strip("-"), "")
+        variant_label = {
+            "male": "雄性",
+            "female": "雌性",
+            "original": "初始的样子",
+            "curly": "上弓姿势",
+            "droopy": "下垂姿势",
+            "stretchy": "平挺姿势",
+        }.get(variant_key)
+        qualifier = f"（{variant_label}）" if variant_label else ""
+        return f"超级{species_name}{mega_suffix}{qualifier}"
+
+    @staticmethod
     def _entity_label(
         connection: sqlite3.Connection, entity_type: str, entity_id: int, language_id: int
     ) -> str:
@@ -416,17 +447,29 @@ class KnowledgeService:
                 pokemon_id = int(row["id"])
                 stats = stats_by_pokemon[pokemon_id]
                 forms = forms_by_pokemon[pokemon_id]
+                mega = any(form["mega"] for form in forms)
+                if bool(row["is_default"]):
+                    variant_name = species_display_name
+                elif mega:
+                    variant_name = self._pokemon_display_name(
+                        species_display_name,
+                        str(species["identifier"]),
+                        str(row["identifier"]),
+                        next((form["name"] for form in forms if form["name"]), None),
+                        True,
+                    )
+                    for form in forms:
+                        if form["mega"] and not form["name"]:
+                            form["name"] = variant_name
+                else:
+                    variant_name = _variant_display_name(
+                        species_display_name, row["identifier"], forms, language
+                    )
                 variants.append(
                     {
                         "pokemon_id": pokemon_id,
                         "identifier": row["identifier"],
-                        "name": (
-                            species_display_name
-                            if bool(row["is_default"])
-                            else _variant_display_name(
-                                species_display_name, row["identifier"], forms, language
-                            )
-                        ),
+                        "name": variant_name,
                         "default": bool(row["is_default"]),
                         "height_m": None if row["height_dm"] is None else float(row["height_dm"]) / 10,
                         "weight_kg": None if row["weight_hg"] is None else float(row["weight_hg"]) / 10,
@@ -877,19 +920,92 @@ class KnowledgeService:
                     description_source = "pokeapi-csv"
                     description_kind = "mechanical_prose_fallback"
                     source_locator = None
+            mechanic_properties = [
+                {
+                    "identifier": prop["identifier"],
+                    "source_signal": prop["source_signal"],
+                    "state": prop["state"],
+                    "supported": prop["state"] == "yes",
+                    "label": (
+                        prop["positive_label_zh"]
+                        if prop["state"] == "yes"
+                        else prop["negative_label_zh"]
+                    ),
+                    "description": prop["description_zh"],
+                    "source_signal_present": bool(prop["source_signal_present"]),
+                    "ruleset_scope": prop["ruleset_scope"],
+                    "source_id": prop["source_id"],
+                    "source_locator": prop["source_locator"],
+                }
+                for prop in connection.execute(
+                    """SELECT amc.identifier, amc.source_signal,
+                              amc.positive_label_zh, amc.negative_label_zh,
+                              amc.description_zh, ams.state,
+                              ams.source_signal_present, ams.ruleset_scope,
+                              ams.source_id, ams.source_locator
+                       FROM ability_mechanic_states ams
+                       JOIN ability_mechanic_categories amc
+                         ON amc.identifier = ams.category_identifier
+                       WHERE ams.ability_id = ?
+                       ORDER BY amc.rowid""",
+                    (int(row["id"]),),
+                )
+            ]
+            mechanic_coverage = connection.execute(
+                """SELECT ruleset_scope, source_id, source_locator
+                   FROM ability_mechanic_coverage WHERE ability_id = ?""",
+                (int(row["id"]),),
+            ).fetchone()
+            mechanic_category_count = int(
+                connection.execute(
+                    "SELECT COUNT(*) FROM ability_mechanic_categories"
+                ).fetchone()[0]
+            )
+            mechanic_property_source_ids = [
+                str(source["source_id"])
+                for source in connection.execute(
+                    """SELECT DISTINCT source_id
+                       FROM ability_mechanic_states
+                       WHERE ability_id = ?
+                       ORDER BY source_id""",
+                    (int(row["id"]),),
+                )
+            ]
             owners = connection.execute(
                 """SELECT DISTINCT s.id, s.identifier,
                           COALESCE(sn_pref.name, sn_en.name, s.identifier) AS name,
-                          pa.is_hidden
+                          p.identifier AS pokemon_identifier,
+                          p.is_default, pa.slot, pa.is_hidden,
+                          pf.form_identifier, pf.is_mega, pf.is_battle_only,
+                          COALESCE(pfn_pref.form_name, pfn_pref.pokemon_name)
+                            AS localized_form_name
                    FROM pokemon_abilities pa
                    JOIN pokemon_variants p ON p.id = pa.pokemon_id
                    JOIN species s ON s.id = p.species_id
+                   LEFT JOIN pokemon_forms pf ON pf.pokemon_id = p.id
+                   LEFT JOIN pokemon_form_names pfn_pref
+                     ON pfn_pref.form_id = pf.id AND pfn_pref.language_id = ?
                    LEFT JOIN species_names sn_pref ON sn_pref.species_id = s.id AND sn_pref.language_id = ?
                    LEFT JOIN species_names sn_en ON sn_en.species_id = s.id AND sn_en.language_id = 9
                    WHERE pa.ability_id = ?
-                   ORDER BY s.id""",
-                (language_id, row["id"]),
+                   ORDER BY s.id, p.id""",
+                (language_id, language_id, row["id"]),
             ).fetchall()
+            owner_entries: list[dict[str, Any]] = []
+            for owner in owners:
+                entry = dict(owner)
+                entry["is_default"] = bool(entry["is_default"])
+                entry["is_hidden"] = bool(entry["is_hidden"])
+                entry["is_mega"] = bool(entry["is_mega"])
+                entry["is_battle_only"] = bool(entry["is_battle_only"])
+                entry["display_name"] = self._pokemon_display_name(
+                    str(entry["name"]),
+                    str(entry["identifier"]),
+                    str(entry["pokemon_identifier"]),
+                    entry.pop("localized_form_name"),
+                    bool(entry["is_mega"]),
+                )
+                owner_entries.append(entry)
             return {
                 "entity_type": "ability",
                 "id": int(row["id"]),
@@ -905,7 +1021,19 @@ class KnowledgeService:
                 "description_source_id": description_source,
                 "description_source_locator": None if flavor else source_locator,
                 "mechanics": self._mechanics(connection, "ability", int(row["id"])),
-                "pilot_species": [dict(owner) for owner in owners],
+                "mechanic_properties": mechanic_properties,
+                "mechanic_properties_complete": (
+                    mechanic_coverage is not None
+                    and len(mechanic_properties) == mechanic_category_count
+                ),
+                "mechanic_property_ruleset_scope": (
+                    mechanic_coverage["ruleset_scope"] if mechanic_coverage else None
+                ),
+                "mechanic_property_source_id": (
+                    mechanic_coverage["source_id"] if mechanic_coverage else None
+                ),
+                "mechanic_property_source_ids": mechanic_property_source_ids,
+                "pilot_species": owner_entries,
                 "source_id": "pokeapi-csv",
             }
 
@@ -1359,6 +1487,7 @@ class KnowledgeService:
         type_identifiers: list[str] | None = None,
         ability_identifiers: list[str] | None = None,
         tag_keys: list[str] | None = None,
+        form_scope: str = "all",
         ordinary_only: bool = False,
         sort_by: str = "national-number",
         descending: bool = False,
@@ -1371,6 +1500,8 @@ class KnowledgeService:
         type_identifiers = type_identifiers or []
         ability_identifiers = ability_identifiers or []
         tag_keys = tag_keys or []
+        if form_scope not in {"all", "default", "mega"}:
+            raise ValueError("form_scope must be all, default, or mega")
         if not 1 <= limit <= 1000:
             raise ValueError("limit must be between 1 and 1000")
         stat_columns = {
@@ -1390,8 +1521,15 @@ class KnowledgeService:
 
         with closing(self._connect()) as connection:
             language_id = self._language_id(connection, language)
-            where = ["p.is_default = 1"]
+            where = ["1 = 1"]
             parameters: list[object] = []
+            if form_scope == "default":
+                where.append("p.is_default = 1")
+            elif form_scope == "mega":
+                where.append(
+                    "EXISTS (SELECT 1 FROM pokemon_forms pf "
+                    "WHERE pf.pokemon_id = p.id AND pf.is_mega = 1)"
+                )
             if generation_ids:
                 where.append(f"s.generation_id IN ({','.join('?' for _ in generation_ids)})")
                 parameters.extend(generation_ids)
@@ -1423,7 +1561,7 @@ class KnowledgeService:
                 if identifier != "base-stat-total"
             )
             inner_sql = f"""SELECT s.id AS species_id, s.identifier, s.generation_id,
-                         p.id AS pokemon_id, p.identifier AS pokemon_identifier,
+                         p.id AS pokemon_id, p.identifier AS pokemon_identifier, p.is_default,
                          {stat_select}, SUM(ps.base_stat) AS base_stat_total
                   FROM species s
                   JOIN pokemon_variants p ON p.species_id = s.id
@@ -1445,22 +1583,95 @@ class KnowledgeService:
                      LIMIT ?""",
                 [*parameters, limit],
             ).fetchall()
+            pokemon_ids = [int(row["pokemon_id"]) for row in rows]
+            form_by_pokemon: dict[int, dict[str, Any]] = {}
+            if pokemon_ids:
+                form_rows = connection.execute(
+                    f"""SELECT f.pokemon_id, f.form_identifier, f.is_mega,
+                               f.is_battle_only,
+                               COALESCE(pfn_pref.form_name, pfn_pref.pokemon_name)
+                                 AS localized_form_name
+                        FROM pokemon_forms f
+                        LEFT JOIN pokemon_form_names pfn_pref
+                          ON pfn_pref.form_id = f.id AND pfn_pref.language_id = ?
+                        WHERE f.pokemon_id IN ({','.join('?' for _ in pokemon_ids)})
+                        ORDER BY f.pokemon_id, f.is_default DESC, f.id""",
+                    [language_id, *pokemon_ids],
+                ).fetchall()
+                for form_row in form_rows:
+                    form_by_pokemon.setdefault(
+                        int(form_row["pokemon_id"]), dict(form_row)
+                    )
+            matched_abilities_by_pokemon: dict[int, list[dict[str, Any]]] = {
+                int(row["pokemon_id"]): [] for row in rows
+            }
+            if rows and ability_identifiers:
+                ability_rows = connection.execute(
+                    f"""SELECT pa.pokemon_id, a.id, a.identifier,
+                               COALESCE(an_pref.name, an_en.name, a.identifier) AS name,
+                               pa.slot, pa.is_hidden
+                        FROM pokemon_abilities pa
+                        JOIN abilities a ON a.id = pa.ability_id
+                        LEFT JOIN ability_names an_pref
+                          ON an_pref.ability_id = a.id AND an_pref.language_id = ?
+                        LEFT JOIN ability_names an_en
+                          ON an_en.ability_id = a.id AND an_en.language_id = 9
+                        WHERE pa.pokemon_id IN ({','.join('?' for _ in pokemon_ids)})
+                          AND a.identifier IN ({','.join('?' for _ in ability_identifiers)})
+                        ORDER BY pa.pokemon_id, pa.slot""",
+                    [language_id, *pokemon_ids, *ability_identifiers],
+                ).fetchall()
+                for ability_row in ability_rows:
+                    matched_abilities_by_pokemon[int(ability_row["pokemon_id"])].append(
+                        {
+                            "id": int(ability_row["id"]),
+                            "identifier": ability_row["identifier"],
+                            "name": ability_row["name"],
+                            "slot": int(ability_row["slot"]),
+                            "is_hidden": bool(ability_row["is_hidden"]),
+                        }
+                    )
             results: list[dict[str, Any]] = []
             for row in rows:
-                results.append(
-                    {
-                        "species_id": int(row["species_id"]),
-                        "identifier": row["identifier"],
-                        "name": self._species_label(connection, int(row["species_id"]), language_id),
-                        "pokemon_identifier": row["pokemon_identifier"],
-                        "generation_id": int(row["generation_id"]),
-                        "stats": {key: int(row[column]) for key, column in stat_columns.items() if key != "base-stat-total"},
-                        "base_stat_total": int(row["base_stat_total"]),
-                    }
+                pokemon_id = int(row["pokemon_id"])
+                species_name = self._species_label(
+                    connection, int(row["species_id"]), language_id
                 )
+                form = form_by_pokemon.get(pokemon_id, {})
+                is_mega = bool(form.get("is_mega", False))
+                entry = {
+                    "species_id": int(row["species_id"]),
+                    "identifier": row["identifier"],
+                    "name": species_name,
+                    "pokemon_identifier": row["pokemon_identifier"],
+                    "display_name": self._pokemon_display_name(
+                        species_name,
+                        str(row["identifier"]),
+                        str(row["pokemon_identifier"]),
+                        form.get("localized_form_name"),
+                        is_mega,
+                    ),
+                    "form_identifier": form.get("form_identifier"),
+                    "is_default": bool(row["is_default"]),
+                    "is_mega": is_mega,
+                    "is_battle_only": bool(form.get("is_battle_only", False)),
+                    "generation_id": int(row["generation_id"]),
+                    "stats": {key: int(row[column]) for key, column in stat_columns.items() if key != "base-stat-total"},
+                    "base_stat_total": int(row["base_stat_total"]),
+                }
+                if ability_identifiers:
+                    entry["matched_abilities"] = matched_abilities_by_pokemon[
+                        pokemon_id
+                    ]
+                results.append(entry)
             return {
-                "form_scope": "default",
+                "form_scope": form_scope,
+                "result_unit": "pokemon_forms",
+                "distinct_species_count": len(
+                    {int(row["species_id"]) for row in rows}
+                ),
                 "ordinary_definition": "is_legendary = 0 and is_mythical = 0" if ordinary_only else None,
+                "ability_match_details_included": bool(ability_identifiers),
                 "count": len(results),
                 "truncated": len(results) == limit,
                 "results": results,
@@ -1649,6 +1860,238 @@ class KnowledgeService:
             ]
             return {"matched_tags": matched_tags, "match_all": match_all, "count": len(results), "results": results}
 
+    def battle_state_summary(
+        self, query: str, language: str = "zh-hans"
+    ) -> dict[str, Any]:
+        """Return one structured battle condition, including linked moves/abilities."""
+        normalized = normalize_alias(query)
+        with closing(self._connect()) as connection:
+            language_id = self._language_id(connection, language)
+            matches = connection.execute(
+                """SELECT DISTINCT bs.*, bsc.label_zh AS category_label,
+                          bsc.description_zh AS category_description
+                   FROM battle_state_aliases bsa
+                   JOIN battle_states bs ON bs.identifier = bsa.state_identifier
+                   JOIN battle_state_categories bsc
+                     ON bsc.identifier = bs.category_identifier
+                   WHERE bsa.alias_normalized = ?
+                   ORDER BY bs.identifier""",
+                (normalized,),
+            ).fetchall()
+            if not matches:
+                raise EntityNotFoundError(f"Battle state not found: {query}")
+            if len(matches) > 1:
+                raise AmbiguousEntityError(
+                    query,
+                    [
+                        {
+                            "entity_type": "battle_state",
+                            "identifier": row["identifier"],
+                            "name": row["name_zh"],
+                        }
+                        for row in matches
+                    ],
+                )
+            row = matches[0]
+            relations = connection.execute(
+                """SELECT bsr.entity_type, bsr.entity_id, e.identifier,
+                          bsr.relation_kind, bsr.note_zh
+                   FROM battle_state_relations bsr
+                   JOIN entities e
+                     ON e.entity_type = bsr.entity_type AND e.entity_id = bsr.entity_id
+                   WHERE bsr.state_identifier = ?
+                   ORDER BY bsr.relation_kind, bsr.entity_type, bsr.entity_id""",
+                (row["identifier"],),
+            ).fetchall()
+            return {
+                "identifier": row["identifier"],
+                "name": row["name_zh"],
+                "category": {
+                    "identifier": row["category_identifier"],
+                    "label": row["category_label"],
+                    "description": row["category_description"],
+                },
+                "subcategory": row["subcategory"],
+                "scope": row["scope"],
+                "generation_from": row["generation_from"],
+                "generation_to": row["generation_to"],
+                "current": bool(row["is_current"]),
+                "description": row["description_zh"],
+                "mechanics": row["mechanics_zh"],
+                "counterplay": row["counterplay_zh"],
+                "parameters": json.loads(row["parameters_json"]),
+                "ruleset_scope": row["ruleset_scope"],
+                "related_entities": [
+                    {
+                        "entity_type": relation["entity_type"],
+                        "entity_id": int(relation["entity_id"]),
+                        "identifier": relation["identifier"],
+                        "name": self._entity_label(
+                            connection,
+                            relation["entity_type"],
+                            int(relation["entity_id"]),
+                            language_id,
+                        ),
+                        "relation_kind": relation["relation_kind"],
+                        "note": relation["note_zh"],
+                    }
+                    for relation in relations
+                ],
+                "source": {
+                    "source_id": row["source_id"],
+                    "locator": row["source_locator"],
+                },
+            }
+
+    def list_battle_states(
+        self,
+        category: str | None = None,
+        scope: str | None = None,
+        current_only: bool = True,
+        related_entity_query: str | None = None,
+        language: str = "zh-hans",
+    ) -> dict[str, Any]:
+        allowed_scopes = {"pokemon", "side", "field"}
+        if scope is not None and scope not in allowed_scopes:
+            raise ValueError(f"Unsupported battle-state scope: {scope}")
+        with closing(self._connect()) as connection:
+            language_id = self._language_id(connection, language)
+            categories = [dict(row) for row in connection.execute(
+                """SELECT identifier, label_zh AS label, scope, description_zh AS description,
+                          sort_order
+                   FROM battle_state_categories ORDER BY sort_order"""
+            )]
+            category_ids = {row["identifier"] for row in categories}
+            if category is not None and category not in category_ids:
+                raise ValueError(f"Unsupported battle-state category: {category}")
+
+            joins = ""
+            clauses: list[str] = []
+            parameters: list[object] = []
+            related_entity: dict[str, Any] | None = None
+            if category is not None:
+                clauses.append("bs.category_identifier = ?")
+                parameters.append(category)
+            if scope is not None:
+                clauses.append("bs.scope = ?")
+                parameters.append(scope)
+            if current_only:
+                clauses.append("bs.is_current = 1")
+            if related_entity_query:
+                entity_rows = connection.execute(
+                    """SELECT DISTINCT ea.entity_type, ea.entity_id, e.identifier
+                       FROM entity_aliases ea
+                       JOIN entities e
+                         ON e.entity_type = ea.entity_type AND e.entity_id = ea.entity_id
+                       WHERE ea.alias_normalized = ?
+                       ORDER BY ea.entity_type, ea.entity_id""",
+                    (normalize_alias(related_entity_query),),
+                ).fetchall()
+                if not entity_rows:
+                    raise EntityNotFoundError(
+                        f"Related entity not found: {related_entity_query}"
+                    )
+                if len(entity_rows) > 1:
+                    raise AmbiguousEntityError(
+                        related_entity_query,
+                        [
+                            {
+                                "entity_type": entity["entity_type"],
+                                "identifier": entity["identifier"],
+                                "name": self._entity_label(
+                                    connection,
+                                    entity["entity_type"],
+                                    int(entity["entity_id"]),
+                                    language_id,
+                                ),
+                            }
+                            for entity in entity_rows
+                        ],
+                    )
+                entity = entity_rows[0]
+                joins = (
+                    "JOIN battle_state_relations bsr "
+                    "ON bsr.state_identifier = bs.identifier"
+                )
+                clauses.extend(("bsr.entity_type = ?", "bsr.entity_id = ?"))
+                parameters.extend((entity["entity_type"], int(entity["entity_id"])))
+                related_entity = {
+                    "entity_type": entity["entity_type"],
+                    "entity_id": int(entity["entity_id"]),
+                    "identifier": entity["identifier"],
+                    "name": self._entity_label(
+                        connection,
+                        entity["entity_type"],
+                        int(entity["entity_id"]),
+                        language_id,
+                    ),
+                }
+            where = "WHERE " + " AND ".join(clauses) if clauses else ""
+            rows = connection.execute(
+                f"""SELECT DISTINCT bs.identifier, bs.name_zh AS name,
+                           bs.category_identifier, bsc.label_zh AS category_label,
+                           bs.subcategory, bs.scope, bs.generation_from,
+                           bs.generation_to, bs.is_current,
+                           bs.description_zh AS description
+                    FROM battle_states bs
+                    JOIN battle_state_categories bsc
+                      ON bsc.identifier = bs.category_identifier
+                    {joins} {where}
+                    ORDER BY bsc.sort_order, bs.generation_from, bs.identifier""",
+                parameters,
+            ).fetchall()
+            return {
+                "categories": categories,
+                "filters": {
+                    "category": category,
+                    "scope": scope,
+                    "current_only": current_only,
+                },
+                "related_entity": related_entity,
+                "count": len(rows),
+                "results": [
+                    {
+                        **dict(row),
+                        "current": bool(row["is_current"]),
+                    }
+                    for row in rows
+                ],
+            }
+
+    def find_battle_states_in_text(
+        self, text: str, limit: int = 8
+    ) -> list[dict[str, Any]]:
+        normalized = normalize_alias(text)
+        if not normalized:
+            return []
+        with closing(self._connect()) as connection:
+            rows = connection.execute(
+                """SELECT bsa.alias_normalized, bs.identifier, bs.name_zh AS name,
+                          bs.category_identifier, bs.scope
+                   FROM battle_state_aliases bsa
+                   JOIN battle_states bs ON bs.identifier = bsa.state_identifier
+                   ORDER BY length(bsa.alias_normalized) DESC, bs.identifier"""
+            ).fetchall()
+            selected: list[dict[str, Any]] = []
+            seen: set[str] = set()
+            for row in rows:
+                alias = str(row["alias_normalized"])
+                if len(alias) < 2 or alias not in normalized or row["identifier"] in seen:
+                    continue
+                selected.append(
+                    {
+                        "identifier": row["identifier"],
+                        "name": row["name"],
+                        "category_identifier": row["category_identifier"],
+                        "scope": row["scope"],
+                        "matched_text": alias,
+                    }
+                )
+                seen.add(str(row["identifier"]))
+                if len(selected) >= limit:
+                    break
+            return selected
+
     def match_tags_in_text(
         self, text: str, entity_type: str = "species", limit: int = 8
     ) -> list[dict[str, Any]]:
@@ -1661,6 +2104,25 @@ class KnowledgeService:
             "effort_yield", "evolution", "form", "generation", "growth", "habitat",
             "item_category", "item_pocket", "move_class", "power", "priority",
             "regional_pokedex", "scope", "status", "type", "effect", "move_mechanic",
+            "ability_mechanic",
+        }
+        ability_mechanic_aliases = {
+            "ability:mechanic:skill-swap:yes": ("可以被特性互换交换",),
+            "ability:mechanic:skill-swap:no": ("不能被特性互换交换",),
+            "ability:mechanic:ability-change:yes": ("可以被其他特性覆盖",),
+            "ability:mechanic:ability-change:no": ("不能被其他特性覆盖",),
+            "ability:mechanic:copyable:yes": ("可以被其他宝可梦复制",),
+            "ability:mechanic:copyable:no": ("不能被其他宝可梦复制",),
+            "ability:mechanic:suppression:yes": ("受无特性状态影响",),
+            "ability:mechanic:suppression:no": ("不受无特性状态影响",),
+            "ability:mechanic:transform:yes": ("变身时特性有效",),
+            "ability:mechanic:transform:no": ("变身时特性无效",),
+            "ability:mechanic:entry:yes": ("入场时发动该特性", "登场时发动"),
+            "ability:mechanic:entry:no": ("不在入场时发动",),
+            "ability:mechanic:mold-breaker:yes": ("受破格影响",),
+            "ability:mechanic:mold-breaker:no": (
+                "不受破格影响", "不受破坏影响",
+            ),
         }
         with closing(self._connect()) as connection:
             rows = connection.execute(
@@ -1675,6 +2137,12 @@ class KnowledgeService:
                     continue
                 label = normalize_alias(str(row["label_zh"]))
                 cores = {label}
+                cores.update(
+                    normalize_alias(alias)
+                    for alias in ability_mechanic_aliases.get(
+                        str(row["tag_key"]), ()
+                    )
+                )
                 for suffix in ("的宝可梦", "宝可梦", "的招式", "招式", "的特性", "特性", "类道具", "的道具", "道具"):
                     if label.endswith(normalize_alias(suffix)):
                         cores.add(label[: -len(normalize_alias(suffix))])

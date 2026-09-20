@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source_id": "pokemon-showdown",
+  "ruleset_scope": "current-mainline",
+  "excluded_signals": {
+    "flag:failskillswap": "顶层交换结论改用百科信息框 Skillswap 字段",
+    "flag:cantsuppress": "顶层无特性结论改用百科信息框 Noability 字段",
+    "flag:notransform": "该标记不足以覆盖全部专属变身限制，顶层结论改用百科信息框 Transform 字段",
+    "event:onStart": "onStart 不能覆盖幻觉等特殊入场事件，顶层结论改用百科信息框 Entry 字段"
+  },
+  "categories": [
+    {
+      "identifier": "role-play",
+      "source_signal": "flag:failroleplay",
+      "positive_when_signal_present": false,
+      "positive_label_zh": "可以被扮演复制的特性",
+      "negative_label_zh": "不能被扮演复制的特性",
+      "description_zh": "扮演能否从目标处取得该特性。"
+    },
+    {
+      "identifier": "trace",
+      "source_signal": "flag:notrace",
+      "positive_when_signal_present": false,
+      "positive_label_zh": "可以被复制特性复制的特性",
+      "negative_label_zh": "不能被复制特性复制的特性",
+      "description_zh": "复制（Trace）能否选中并取得该特性。"
+    },
+    {
+      "identifier": "receiver",
+      "source_signal": "flag:noreceiver",
+      "positive_when_signal_present": false,
+      "positive_label_zh": "可以被接球手或化学之力继承的特性",
+      "negative_label_zh": "不能被接球手或化学之力继承的特性",
+      "description_zh": "接球手或化学之力能否在同伴倒下时取得该特性。"
+    },
+    {
+      "identifier": "entrainment",
+      "source_signal": "flag:noentrain",
+      "positive_when_signal_present": false,
+      "positive_label_zh": "可以通过找伙伴传递的特性",
+      "negative_label_zh": "不能通过找伙伴传递的特性",
+      "description_zh": "持有者能否用找伙伴把自己的特性传给目标。"
+    },
+    {
+      "identifier": "mold-breaker",
+      "source_signal": "flag:breakable",
+      "positive_when_signal_present": true,
+      "positive_label_zh": "受破格影响的特性",
+      "negative_label_zh": "不受破格影响的特性",
+      "description_zh": "攻击方的破格、涡轮火焰、兆级电压等效果能否在招式结算时无视该特性。"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 PRAGMA foreign_keys = ON;
-PRAGMA user_version = 10;
+PRAGMA user_version = 12;
 
 CREATE TABLE source_snapshots (
     source_id TEXT PRIMARY KEY,
@@ -222,6 +222,59 @@ CREATE TABLE mechanic_summaries (
     FOREIGN KEY (entity_type, entity_id) REFERENCES entities(entity_type, entity_id)
 );
 
+-- Structured battle conditions.  A "field state" is intentionally broader
+-- than Terrain: it may affect one side, every active Pokémon, the weather,
+-- the ground, a room-like global rule, or an ability-provided aura.
+CREATE TABLE battle_state_categories (
+    identifier TEXT PRIMARY KEY,
+    label_zh TEXT NOT NULL,
+    scope TEXT NOT NULL,
+    description_zh TEXT NOT NULL,
+    sort_order INTEGER NOT NULL
+);
+
+CREATE TABLE battle_states (
+    identifier TEXT PRIMARY KEY,
+    name_zh TEXT NOT NULL,
+    category_identifier TEXT NOT NULL REFERENCES battle_state_categories(identifier),
+    subcategory TEXT NOT NULL,
+    scope TEXT NOT NULL,
+    generation_from INTEGER REFERENCES generations(id),
+    generation_to INTEGER REFERENCES generations(id),
+    is_current INTEGER NOT NULL,
+    description_zh TEXT NOT NULL,
+    mechanics_zh TEXT NOT NULL,
+    counterplay_zh TEXT NOT NULL,
+    parameters_json TEXT NOT NULL,
+    ruleset_scope TEXT NOT NULL,
+    source_locator TEXT NOT NULL,
+    source_id TEXT NOT NULL REFERENCES source_snapshots(source_id)
+);
+CREATE INDEX idx_battle_states_category
+    ON battle_states(category_identifier, scope, is_current);
+
+CREATE TABLE battle_state_aliases (
+    state_identifier TEXT NOT NULL REFERENCES battle_states(identifier),
+    alias_normalized TEXT NOT NULL,
+    alias TEXT NOT NULL,
+    alias_kind TEXT NOT NULL,
+    PRIMARY KEY (state_identifier, alias_normalized)
+);
+CREATE INDEX idx_battle_state_alias_lookup
+    ON battle_state_aliases(alias_normalized, state_identifier);
+
+CREATE TABLE battle_state_relations (
+    state_identifier TEXT NOT NULL REFERENCES battle_states(identifier),
+    entity_type TEXT NOT NULL,
+    entity_id INTEGER NOT NULL,
+    relation_kind TEXT NOT NULL,
+    note_zh TEXT NOT NULL,
+    PRIMARY KEY (state_identifier, entity_type, entity_id, relation_kind),
+    FOREIGN KEY (entity_type, entity_id) REFERENCES entities(entity_type, entity_id)
+);
+CREATE INDEX idx_battle_state_relations_entity
+    ON battle_state_relations(entity_type, entity_id, state_identifier);
+
 -- Long-form, section-level evidence used by the retrieval layer.  Documents
 -- keep provenance once; passages remain independently searchable and may be
 -- linked to several first-class entities without becoming children of them.
@@ -425,6 +478,39 @@ CREATE TABLE ability_flavor_text (
     flavor_text TEXT NOT NULL,
     source_id TEXT NOT NULL REFERENCES source_snapshots(source_id),
     PRIMARY KEY (ability_id, version_group_id, language_id)
+);
+
+-- Current main-series ability interaction properties.  Every imported property
+-- is an explicit yes/no state; coverage is checked independently so that a
+-- missing property is never confused with a negative result.
+CREATE TABLE ability_mechanic_categories (
+    identifier TEXT PRIMARY KEY,
+    source_signal TEXT NOT NULL UNIQUE,
+    positive_label_zh TEXT NOT NULL,
+    negative_label_zh TEXT NOT NULL,
+    description_zh TEXT NOT NULL,
+    positive_when_signal_present INTEGER NOT NULL,
+    source_id TEXT NOT NULL REFERENCES source_snapshots(source_id)
+);
+
+CREATE TABLE ability_mechanic_states (
+    ability_id INTEGER NOT NULL REFERENCES abilities(id),
+    category_identifier TEXT NOT NULL REFERENCES ability_mechanic_categories(identifier),
+    state TEXT NOT NULL CHECK (state IN ('yes', 'no')),
+    source_signal_present INTEGER NOT NULL,
+    ruleset_scope TEXT NOT NULL,
+    source_locator TEXT NOT NULL,
+    source_id TEXT NOT NULL REFERENCES source_snapshots(source_id),
+    PRIMARY KEY (ability_id, category_identifier, ruleset_scope)
+);
+CREATE INDEX idx_ability_mechanic_states_category
+    ON ability_mechanic_states(category_identifier, state, ability_id);
+
+CREATE TABLE ability_mechanic_coverage (
+    ability_id INTEGER PRIMARY KEY REFERENCES abilities(id),
+    ruleset_scope TEXT NOT NULL,
+    source_locator TEXT NOT NULL,
+    source_id TEXT NOT NULL REFERENCES source_snapshots(source_id)
 );
 
 CREATE TABLE ability_names (

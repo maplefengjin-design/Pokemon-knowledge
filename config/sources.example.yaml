@@ -85,10 +85,22 @@ sources:
     include:
       - data/moves.ts
       - sim/dex-moves.ts
+      - data/abilities.ts
+      - data/conditions.ts
+      - sim/dex-abilities.ts
       - LICENSE
     license: MIT
     role: battle_rules_extension
-    notes: Community battle implementation used for current main-series move flags; allyanim is excluded because it only controls presentation.
+    notes: Community battle implementation used for current main-series move flags, ability interactions, major/volatile statuses, weather, terrain, side conditions and whole-field effects; allyanim is excluded because it only controls presentation.
+
+  - id: pokemon-encyclopedia-ability-infobox
+    enabled: true
+    authority_tier: D
+    kind: mediawiki-api-revision-snapshot
+    url: https://wiki.52poke.com
+    license: CC-BY-NC-SA-3.0
+    role: current_mainline_ability_infobox_properties
+    notes: Stores only structured infobox states with per-page revision IDs; non-commercial/share-alike restrictions apply.
 
   - id: chinese-wiki-derived-dataset
     enabled: false

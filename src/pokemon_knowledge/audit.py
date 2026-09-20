@@ -85,6 +85,36 @@ def audit_pilot(settings: Settings | None = None, write_report: bool = True) -> 
             "entities": connection.execute("SELECT COUNT(*) FROM entities").fetchone()[0],
             "entity_aliases": connection.execute("SELECT COUNT(*) FROM entity_aliases").fetchone()[0],
             "abilities": connection.execute("SELECT COUNT(*) FROM abilities").fetchone()[0],
+            "ability_mechanic_categories": connection.execute(
+                "SELECT COUNT(*) FROM ability_mechanic_categories"
+            ).fetchone()[0],
+            "ability_mechanic_states": connection.execute(
+                "SELECT COUNT(*) FROM ability_mechanic_states"
+            ).fetchone()[0],
+            "abilities_with_mechanic_coverage": connection.execute(
+                "SELECT COUNT(*) FROM ability_mechanic_coverage"
+            ).fetchone()[0],
+            "abilities_with_complete_mechanic_properties": connection.execute(
+                """SELECT COUNT(*) FROM (
+                       SELECT ability_id
+                       FROM ability_mechanic_states
+                       GROUP BY ability_id
+                       HAVING COUNT(*) = (
+                           SELECT COUNT(*) FROM ability_mechanic_categories
+                       )
+                   )"""
+            ).fetchone()[0],
+            "abilities_with_infobox_properties": connection.execute(
+                """SELECT COUNT(DISTINCT ability_id)
+                   FROM ability_mechanic_states
+                   WHERE source_id = 'pokemon-encyclopedia-ability-infobox'"""
+            ).fetchone()[0],
+            "ability_mechanic_yes_states": connection.execute(
+                "SELECT COUNT(*) FROM ability_mechanic_states WHERE state = 'yes'"
+            ).fetchone()[0],
+            "ability_mechanic_no_states": connection.execute(
+                "SELECT COUNT(*) FROM ability_mechanic_states WHERE state = 'no'"
+            ).fetchone()[0],
             "moves": connection.execute("SELECT COUNT(*) FROM moves").fetchone()[0],
             "move_mechanic_categories": connection.execute(
                 "SELECT COUNT(*) FROM move_mechanic_categories"
@@ -125,6 +155,24 @@ def audit_pilot(settings: Settings | None = None, write_report: bool = True) -> 
             ).fetchone()[0],
             "latest_mechanic_summaries": connection.execute(
                 "SELECT COUNT(*) FROM mechanic_summaries"
+            ).fetchone()[0],
+            "battle_state_categories": connection.execute(
+                "SELECT COUNT(*) FROM battle_state_categories"
+            ).fetchone()[0],
+            "battle_states": connection.execute(
+                "SELECT COUNT(*) FROM battle_states"
+            ).fetchone()[0],
+            "current_battle_states": connection.execute(
+                "SELECT COUNT(*) FROM battle_states WHERE is_current = 1"
+            ).fetchone()[0],
+            "battle_states_with_aliases": connection.execute(
+                "SELECT COUNT(DISTINCT state_identifier) FROM battle_state_aliases"
+            ).fetchone()[0],
+            "battle_state_aliases": connection.execute(
+                "SELECT COUNT(*) FROM battle_state_aliases"
+            ).fetchone()[0],
+            "battle_state_relations": connection.execute(
+                "SELECT COUNT(*) FROM battle_state_relations"
             ).fetchone()[0],
             "knowledge_documents": connection.execute(
                 "SELECT COUNT(*) FROM knowledge_documents"
@@ -248,8 +296,80 @@ def audit_pilot(settings: Settings | None = None, write_report: bool = True) -> 
             issues.append(
                 {"check": "move_mechanic_category_membership", "category": category, "actual": 0}
             )
+    if counts["ability_mechanic_categories"] != 11:
+        issues.append(
+            {
+                "check": "ability_mechanic_category_count",
+                "actual": counts["ability_mechanic_categories"],
+                "expected": 11,
+            }
+        )
+    if counts["abilities_with_mechanic_coverage"] < 314:
+        issues.append(
+            {
+                "check": "ability_mechanic_coverage_minimum",
+                "actual": counts["abilities_with_mechanic_coverage"],
+                "expected_minimum": 314,
+            }
+        )
+    if counts["abilities_with_complete_mechanic_properties"] < 311:
+        issues.append(
+            {
+                "check": "ability_mechanic_complete_matrix_minimum",
+                "actual": counts["abilities_with_complete_mechanic_properties"],
+                "expected_minimum": 311,
+            }
+        )
+    if counts["abilities_with_infobox_properties"] < 311:
+        issues.append(
+            {
+                "check": "ability_infobox_coverage_minimum",
+                "actual": counts["abilities_with_infobox_properties"],
+                "expected_minimum": 311,
+            }
+        )
+    if not counts["ability_mechanic_yes_states"] or not counts["ability_mechanic_no_states"]:
+        issues.append(
+            {
+                "check": "ability_mechanic_state_polarity",
+                "yes": counts["ability_mechanic_yes_states"],
+                "no": counts["ability_mechanic_no_states"],
+            }
+        )
+    if counts["battle_state_categories"] != 6:
+        issues.append(
+            {
+                "check": "battle_state_category_count",
+                "actual": counts["battle_state_categories"],
+                "expected": 6,
+            }
+        )
+    if counts["battle_states"] < 50:
+        issues.append(
+            {
+                "check": "battle_state_minimum",
+                "actual": counts["battle_states"],
+                "expected_minimum": 50,
+            }
+        )
+    if counts["battle_states_with_aliases"] != counts["battle_states"]:
+        issues.append(
+            {
+                "check": "battle_state_alias_coverage",
+                "actual": counts["battle_states_with_aliases"],
+                "expected": counts["battle_states"],
+            }
+        )
+    if counts["battle_state_relations"] < counts["battle_states"]:
+        issues.append(
+            {
+                "check": "battle_state_relation_minimum",
+                "actual": counts["battle_state_relations"],
+                "expected_minimum": counts["battle_states"],
+            }
+        )
     report = {
-        "schema_version": 10,
+        "schema_version": 12,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "ok": not issues,
         "edition_id": "mainline",

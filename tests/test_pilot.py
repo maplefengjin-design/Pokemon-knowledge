@@ -157,6 +157,71 @@ class PilotKnowledgeTests(unittest.TestCase):
         self.assertEqual(ability["effect_language"], "zh-hans")
         self.assertTrue(any(row["identifier"] == "pikachu" for row in ability["pilot_species"]))
 
+    def test_ability_infobox_properties_are_explicit_and_complete(self) -> None:
+        drizzle = self.service.ability_summary("降雨")
+        self.assertTrue(drizzle["mechanic_properties_complete"])
+        self.assertEqual(len(drizzle["mechanic_properties"]), 11)
+        states = {
+            row["identifier"]: row["state"]
+            for row in drizzle["mechanic_properties"]
+        }
+        self.assertEqual(
+            {
+                key: states[key]
+                for key in (
+                    "skill-swap", "ability-change", "copyable",
+                    "suppression", "transform", "entry",
+                )
+            },
+            {
+                "skill-swap": "yes",
+                "ability-change": "yes",
+                "copyable": "yes",
+                "suppression": "yes",
+                "transform": "yes",
+                "entry": "yes",
+            },
+        )
+        self.assertEqual(
+            set(drizzle["mechanic_property_source_ids"]),
+            {"pokemon-showdown", "pokemon-encyclopedia-ability-infobox"},
+        )
+
+    def test_species_specific_transform_rule_uses_infobox_not_flag_absence(self) -> None:
+        multitype = self.service.ability_summary("多属性")
+        states = {
+            row["identifier"]: row["state"]
+            for row in multitype["mechanic_properties"]
+        }
+        self.assertEqual(states["skill-swap"], "no")
+        self.assertEqual(states["ability-change"], "no")
+        self.assertEqual(states["copyable"], "no")
+        self.assertEqual(states["suppression"], "no")
+        self.assertEqual(states["transform"], "no")
+        self.assertEqual(states["entry"], "no")
+
+    def test_negative_ability_mechanic_tags_are_searchable(self) -> None:
+        result = self.service.search_by_tags(
+            ["不能被交换的特性"], "ability", match_all=True
+        )
+        identifiers = {row["identifier"] for row in result["results"]}
+        self.assertIn("multitype", identifiers)
+        self.assertIn("wonder-guard", identifiers)
+        self.assertEqual(result["matched_tags"][0]["category"], "ability_mechanic")
+        answer = self.engine.answer("哪些特性不能被交换？")
+        self.assertIn("多属性", answer)
+        self.assertIn("神奇宝贝百科", answer)
+        verbose_answer = self.engine.answer("哪些特性不能被特性互换交换？")
+        self.assertIn("多属性", verbose_answer)
+        typo_answer = self.engine.answer("哪些特性不受破坏影响？")
+        self.assertIn("按组合标签", typo_answer)
+        self.assertIn("不受破格影响", typo_answer)
+
+    def test_direct_ability_property_question_returns_one_precise_state(self) -> None:
+        answer = self.engine.answer("多属性特性在变身时有效吗？")
+        self.assertIn("变身时无效的特性", answer)
+        self.assertIn("神奇宝贝百科", answer)
+
     def test_item_is_an_independent_entity(self) -> None:
         item = self.service.item_summary("吃剩的东西")
         self.assertEqual(item["identifier"], "leftovers")
@@ -218,13 +283,50 @@ class PilotKnowledgeTests(unittest.TestCase):
 
     def test_section_rag_is_present_and_indexed(self) -> None:
         report = audit_pilot(self.settings, write_report=False)
-        self.assertEqual(report["schema_version"], 10)
+        self.assertEqual(report["schema_version"], 12)
         self.assertEqual(report["counts"]["knowledge_documents"], 2)
         self.assertEqual(report["counts"]["knowledge_passages"], 6)
         self.assertEqual(
             report["counts"]["knowledge_passages"],
             report["counts"]["knowledge_fts_rows"],
         )
+
+    def test_battle_state_categories_are_structured_and_audited(self) -> None:
+        report = audit_pilot(self.settings, write_report=False)
+        self.assertEqual(report["counts"]["battle_state_categories"], 6)
+        self.assertEqual(report["counts"]["battle_states"], 59)
+        self.assertEqual(report["counts"]["battle_states_with_aliases"], 59)
+        self.assertEqual(report["counts"]["battle_state_relations"], 100)
+
+    def test_battle_state_classification_distinguishes_side_terrain_and_field(self) -> None:
+        light_screen = self.service.battle_state_summary("光墙")
+        mist = self.service.battle_state_summary("白雾")
+        grassy = self.service.battle_state_summary("青草场地")
+        trick_room = self.service.battle_state_summary("戏法空间")
+        rain = self.service.battle_state_summary("雨天")
+        dark_aura = self.service.battle_state_summary("暗黑气场")
+        self.assertEqual(light_screen["category"]["identifier"], "side_condition")
+        self.assertEqual(mist["category"]["identifier"], "side_condition")
+        self.assertEqual(grassy["category"]["identifier"], "terrain")
+        self.assertEqual(trick_room["category"]["identifier"], "field_condition")
+        self.assertEqual(rain["category"]["identifier"], "weather")
+        self.assertEqual(dark_aura["category"]["identifier"], "aura")
+        self.assertEqual(light_screen["parameters"]["duration_turns"], 5)
+
+    def test_battle_states_can_be_queried_by_related_move(self) -> None:
+        result = self.service.list_battle_states(related_entity_query="换场")
+        identifiers = {row["identifier"] for row in result["results"]}
+        self.assertIn("light-screen", identifiers)
+        self.assertIn("mist", identifiers)
+        self.assertIn("stealth-rock", identifiers)
+
+    def test_local_chat_understands_broad_field_state(self) -> None:
+        answer = self.engine.answer("本地知识库中有哪些场地状态？")
+        self.assertIn("不会把“场地状态”只理解成", answer)
+        self.assertIn("光墙", answer)
+        self.assertIn("白雾", answer)
+        self.assertIn("青草场地", answer)
+        self.assertIn("戏法空间", answer)
 
     def test_chinese_fts_retrieves_without_entity_name(self) -> None:
         passages = self.service.search_passages("循环超过500次会怎样？")
@@ -334,6 +436,7 @@ class PilotKnowledgeTests(unittest.TestCase):
     def test_species_filter_tool_uses_exact_sql(self) -> None:
         result = self.service.filter_species(
             stat_filters={"speed": {"gt": 150}},
+            form_scope="default",
             ordinary_only=True,
             sort_by="speed",
             descending=True,
@@ -342,6 +445,67 @@ class PilotKnowledgeTests(unittest.TestCase):
             [(row["identifier"], row["stats"]["speed"]) for row in result["results"]],
             [("ninjask", 160), ("pheromosa", 151)],
         )
+
+    def test_ability_filter_returns_authoritative_slots(self) -> None:
+        result = self.service.filter_species(ability_identifiers=["huge-power"])
+        self.assertTrue(result["ability_match_details_included"])
+        matches = {
+            row["pokemon_identifier"]: (
+                row["matched_abilities"][0]["slot"],
+                row["matched_abilities"][0]["is_hidden"],
+            )
+            for row in result["results"]
+        }
+        self.assertEqual(
+            matches,
+            {
+                "starmie-mega": (1, False),
+                "marill": (2, False),
+                "azumarill": (2, False),
+                "azurill": (2, False),
+                "mawile-mega": (1, False),
+                "bunnelby": (3, True),
+                "diggersby": (3, True),
+            },
+        )
+        self.assertEqual(result["form_scope"], "all")
+        self.assertEqual(result["count"], 7)
+        display_names = {
+            row["pokemon_identifier"]: row["display_name"]
+            for row in result["results"]
+        }
+        self.assertEqual(display_names["mawile-mega"], "超级大嘴娃")
+        self.assertEqual(display_names["starmie-mega"], "超级宝石海星")
+
+        default_only = self.service.filter_species(
+            ability_identifiers=["huge-power"], form_scope="default"
+        )
+        self.assertEqual(default_only["count"], 5)
+        self.assertFalse(any(row["is_mega"] for row in default_only["results"]))
+
+    def test_ability_summary_owner_rows_include_form_and_slot(self) -> None:
+        result = self.service.ability_summary("大力士")
+        azurill = next(
+            row for row in result["pilot_species"]
+            if row["pokemon_identifier"] == "azurill"
+        )
+        self.assertEqual(azurill["slot"], 2)
+        self.assertFalse(azurill["is_hidden"])
+        self.assertTrue(azurill["is_default"])
+        mega_starmie = next(
+            row for row in result["pilot_species"]
+            if row["pokemon_identifier"] == "starmie-mega"
+        )
+        self.assertEqual(mega_starmie["display_name"], "超级宝石海星")
+        self.assertTrue(mega_starmie["is_mega"])
+
+        starmie = self.service.species_summary("宝石海星")
+        starmie_mega = next(
+            row for row in starmie["variants"]
+            if row["identifier"] == "starmie-mega"
+        )
+        self.assertEqual(starmie_mega["name"], "超级宝石海星")
+        self.assertEqual(starmie_mega["forms"][0]["name"], "超级宝石海星")
 
     def test_species_comparison_tool(self) -> None:
         result = self.service.compare_species(["超梦", "铁面忍者"], ["speed"])
@@ -394,6 +558,15 @@ class PilotKnowledgeTests(unittest.TestCase):
             {"species_query": "滚滚蝙蝠", "move_query": "特性互换"},
         )
         self.assertTrue(result["can_learn"])
+
+    def test_battle_state_tools_are_exposed_to_llm(self) -> None:
+        names = {tool["name"] for tool in TOOL_DEFINITIONS}
+        self.assertIn("lookup_battle_state", names)
+        self.assertIn("list_battle_states", names)
+        result = KnowledgeTools(self.service).call(
+            "lookup_battle_state", {"query": "灼伤"}
+        )
+        self.assertEqual(result["category"]["identifier"], "pokemon_status")
 
     def test_local_chat_uses_latest_available_learnset_without_version(self) -> None:
         answer = self.engine.answer("滚滚蝙蝠能学特性互换吗？")

@@ -87,6 +87,25 @@ class AnswerEngine:
 
     @staticmethod
     def _source_note(source_id: str = "pokeapi-csv") -> str:
+        if "pokemon-encyclopedia-ability-infobox" in source_id:
+            description_note = (
+                "中文效果说明来自 pokemon-dataset-zh 收录的神奇宝贝百科补缺文本"
+                "（CC BY-NC-SA 3.0，非商业使用）；"
+                if "pokemon-dataset-zh" in source_id
+                else "结构化数值与中文名称来自本地 PokéAPI CSV 快照；"
+            )
+            showdown_note = (
+                "扮演、复制、接球手、找伙伴与破格等细分机制来自固定提交的 "
+                "Pokémon Showdown 开源规则数据；"
+                if "pokemon-showdown" in source_id
+                else ""
+            )
+            return (
+                f"\n\n依据：{description_note}"
+                "交换、覆盖、复制、无特性、变身及入场六项基本信息来自"
+                "神奇宝贝百科逐页固定修订的信息框（CC BY-NC-SA 3.0，非商业使用）；"
+                f"{showdown_note}当前回答属于原作主系列数据域。"
+            )
         if source_id == "pokemon-dataset-zh+pokemon-showdown":
             return (
                 "\n\n依据：中文效果说明来自 pokemon-dataset-zh 收录的神奇宝贝百科补缺文本"
@@ -97,6 +116,11 @@ class AnswerEngine:
             return (
                 "\n\n依据：结构化数值与中文名称来自本地 PokéAPI CSV 快照；"
                 "当前主系列招式机制分类来自固定提交的 Pokémon Showdown 开源规则数据。"
+            )
+        if source_id == "pokemon-showdown":
+            return (
+                "\n\n依据：本地整理的主系列战斗状态知识；规则依据为固定提交的 "
+                "Pokémon Showdown 开源规则数据，顶层数值默认采用当前主系列规则。"
             )
         if source_id == "pokemon-dataset-zh":
             return (
@@ -219,14 +243,24 @@ class AnswerEngine:
                 f" 你指定了 {requested_version}；当前尚未导入该版本的独立精确参数，"
                 "因此不套用第九世代默认倍率。"
             )
+        if ability["mechanic_properties"]:
+            labels = "；".join(
+                prop["label"] for prop in ability["mechanic_properties"]
+            )
+            text += f" 机制信息（当前主系列规则）：{labels}。"
         if ability["pilot_species"]:
             owners = "、".join(
-                f"{row['name']}{'（隐藏）' if row['is_hidden'] else ''}"
+                f"{row['display_name']}{'（隐藏）' if row['is_hidden'] else ''}"
                 for row in ability["pilot_species"][:12]
             )
             suffix = "等" if len(ability["pilot_species"]) > 12 else ""
             text += f" 在完整图鉴中，具有该特性的宝可梦包括：{owners}{suffix}。"
-        return text + self._source_note(ability["description_source_id"])
+        source_ids = {
+            ability["description_source_id"],
+            *ability["mechanic_property_source_ids"],
+        }
+        source_id = "+".join(sorted(source_ids))
+        return text + self._source_note(source_id)
 
     def _render_item(self, entity: dict, requested_version: str | None = None) -> str:
         item = self.service.item_summary(entity["identifier"])
@@ -257,10 +291,83 @@ class AnswerEngine:
             text += f" 投掷威力为 {item['fling_power']}。"
         return text + self._source_note(item["description_source_id"])
 
+    def _render_battle_state(self, identifier: str) -> str:
+        state = self.service.battle_state_summary(identifier)
+        generation = f"第{state['generation_from']}世代起" if state["generation_from"] else ""
+        if state["generation_to"]:
+            generation = f"第{state['generation_from']}至第{state['generation_to']}世代"
+        history = "（历史状态，当前标准规则不使用）" if not state["current"] else ""
+        related = "、".join(
+            f"{row['name']}（{row['note']}）" for row in state["related_entities"]
+        )
+        text = (
+            f"{state['name']}属于“{state['category']['label']}”，作用范围为"
+            f"{ {'pokemon': '单只宝可梦', 'side': '一方场地', 'field': '全场'}.get(state['scope'], state['scope']) }；"
+            f"{generation}{history}。\n"
+            f"说明：{state['description']}\n"
+            f"当前机制：{state['mechanics']}"
+        )
+        if state["counterplay"]:
+            text += f"\n应对方式：{state['counterplay']}"
+        if related:
+            text += f"\n相关招式/特性：{related}"
+        return text + self._source_note("pokemon-showdown")
+
+    def _render_battle_state_categories(self, categories: list[str]) -> str:
+        category_info = {
+            row["identifier"]: row
+            for row in self.service.list_battle_states()["categories"]
+        }
+        blocks = []
+        total = 0
+        for category in categories:
+            result = self.service.list_battle_states(category=category)
+            total += result["count"]
+            names = "、".join(row["name"] for row in result["results"])
+            info = category_info[category]
+            blocks.append(
+                f"【{info['label']}】{info['description']}\n{names}"
+            )
+        introduction = (
+            "本项目不会把“场地状态”只理解成电气/青草/薄雾/精神场地。"
+            if set(categories) == {"side_condition", "terrain", "field_condition"}
+            else ""
+        )
+        return (
+            f"{introduction}当前收录这 {len(categories)} 类共 {total} 个当前状态：\n"
+            + "\n\n".join(blocks)
+            + self._source_note("pokemon-showdown")
+        )
+
     def answer(self, question: str) -> str:
         question = question.strip()
         if not question:
             return "请输入一个宝可梦相关问题。"
+
+        battle_states = self.service.find_battle_states_in_text(question)
+        if (
+            len(battle_states) == 1
+            and not self._should_use_rag(question)
+            and self._version(question) is None
+        ):
+            return self._render_battle_state(battle_states[0]["identifier"])
+
+        state_list_intent = any(
+            cue in question for cue in ("有哪些", "清单", "分类", "列出", "包括什么", "有什么状态")
+        )
+        if state_list_intent:
+            if "天气" in question:
+                return self._render_battle_state_categories(["weather"])
+            if "气场" in question:
+                return self._render_battle_state_categories(["aura"])
+            if any(cue in question for cue in ("精灵状态", "宝可梦状态", "异常状态")):
+                return self._render_battle_state_categories(["pokemon_status"])
+            if "场地状态" in question:
+                return self._render_battle_state_categories(
+                    ["side_condition", "terrain", "field_condition"]
+                )
+            if "场地" in question:
+                return self._render_battle_state_categories(["terrain"])
 
         found = self.service.find_entities_in_text(
             question, ("species", "move", "ability", "item")
@@ -325,8 +432,15 @@ class AnswerEngine:
                 "低于": "lt", "小于": "lt", "不超过": "lte", "至多": "lte", "等于": "eq", "为": "eq",
             }[operator_text]
             stat = stat_aliases[stat_name]
+            if any(word in question for word in ("基础形态", "普通形态", "默认形态")):
+                form_scope = "default"
+            elif any(word in question for word in ("Mega", "mega", "超级形态", "超级进化")):
+                form_scope = "mega"
+            else:
+                form_scope = "all"
             result = self.service.filter_species(
                 stat_filters={stat: {operator: int(value_text)}},
+                form_scope=form_scope,
                 ordinary_only="普通" in question,
                 sort_by=stat,
                 descending=operator in {"gt", "gte"},
@@ -334,14 +448,19 @@ class AnswerEngine:
             )
             field_label = stat_name
             rendered = "、".join(
-                f"{row['name']}（{row['base_stat_total'] if stat == 'base-stat-total' else row['stats'][stat]}）"
+                f"{row['display_name']}（{row['base_stat_total'] if stat == 'base-stat-total' else row['stats'][stat]}）"
                 for row in result["results"]
             )
             scope_note = (
                 "这里将“普通宝可梦”解释为非传说且非幻之宝可梦。" if result["ordinary_definition"] else ""
             )
+            scope_label = {
+                "all": "全部",
+                "default": "默认",
+                "mega": "Mega",
+            }[result["form_scope"]]
             return (
-                f"按基础形态的{field_label}筛选，共找到 {result['count']} 种：{rendered}。"
+                f"按{scope_label}形态范围的{field_label}筛选，共找到 {result['count']} 个形态：{rendered}。"
                 f"{scope_note}"
             ) + self._source_note()
 
@@ -411,6 +530,44 @@ class AnswerEngine:
                     + self._source_note("pokeapi-csv+pokemon-showdown")
                 )
 
+        ability_property_cues = {
+            "skill-swap": ("特性互换", "交换"),
+            "role-play": ("扮演",),
+            "trace": ("复制特性",),
+            "receiver": ("接球手", "化学之力"),
+            "entrainment": ("找伙伴",),
+            "suppression": ("无特性", "胃液", "化学变化气体", "压制"),
+            "transform": ("变身",),
+            "mold-breaker": ("破格", "涡轮火焰", "兆级电压"),
+            "entry": ("入场", "登场"),
+        }
+        if ability:
+            requested_property = next(
+                (
+                    identifier
+                    for identifier, cues in ability_property_cues.items()
+                    if any(cue in question for cue in cues)
+                ),
+                None,
+            )
+            if requested_property is not None:
+                summary = self.service.ability_summary(ability["identifier"])
+                if not summary["mechanic_properties_complete"]:
+                    return (
+                        f"当前规则源尚未覆盖{summary['name']}，不能把机制标签缺失当作否定结论。"
+                        + self._source_note()
+                    )
+                prop = next(
+                    row
+                    for row in summary["mechanic_properties"]
+                    if row["identifier"] == requested_property
+                )
+                return (
+                    f"按当前主系列规则，{summary['name']}属于“{prop['label']}”。"
+                    f"{prop['description']}"
+                    + self._source_note(f"pokeapi-csv+{prop['source_id']}")
+                )
+
         tag_search_intent = any(word in question for word in ("哪些", "有哪些", "查找", "筛选", "列出"))
         if tag_search_intent:
             if any(word in question for word in ("招式", "技能")):
@@ -432,9 +589,20 @@ class AnswerEngine:
                 return (
                     f"按组合标签“{tag_labels}”找到 {result['count']} 个结果：{rendered}{suffix}。"
                 ) + self._source_note(
-                    "pokeapi-csv+pokemon-showdown"
-                    if any(row["category"] == "move_mechanic" for row in result["matched_tags"])
-                    else "pokeapi-csv"
+                    (
+                        "pokeapi-csv+pokemon-showdown+"
+                        "pokemon-encyclopedia-ability-infobox"
+                        if any(
+                            row["category"] == "ability_mechanic"
+                            for row in result["matched_tags"]
+                        )
+                        else "pokeapi-csv+pokemon-showdown"
+                        if any(
+                            row["category"] == "move_mechanic"
+                            for row in result["matched_tags"]
+                        )
+                        else "pokeapi-csv"
+                    )
                 )
 
         learn_intent = any(word in question for word in ("能学", "能不能学", "会不会", "学会", "学习"))

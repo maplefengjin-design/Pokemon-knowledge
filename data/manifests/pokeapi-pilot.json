@@ -1,10 +1,10 @@
 {
-  "schema_version": 10,
+  "schema_version": 12,
   "source_id": "pokeapi-csv",
   "repository_url": "https://github.com/PokeAPI/pokeapi",
   "upstream_commit": "8dfd1e309d4a1ca11f10b185412ed7dc8dd2b310",
   "commit_time": "2026-09-09T04:31:17+02:00",
-  "fetched_at": "2026-09-10T11:25:21.800637+00:00",
+  "fetched_at": "2026-09-16T07:53:47.911423+00:00",
   "parser_version": "0.1.0",
   "pilot_species_ids": [
     1,
@@ -282,6 +282,18 @@
     "move_mechanic_categories.json": {
       "bytes": 6685,
       "sha256": "540be3a89937543b6a10e39058699f40998934d39bb02fe73ab981db03c95613"
+    },
+    "ability_mechanic_categories.json": {
+      "bytes": 2348,
+      "sha256": "0bc682a902d73ef8942164d3529914087bf39ac7f4ba03d5b0ef78a4544ab216"
+    },
+    "ability_infobox_mainline.json": {
+      "bytes": 170879,
+      "sha256": "711296ba9384ffcd66a5952242fa60eca0e5dc43bb6737c3a94d0138cfedcd17"
+    },
+    "battle_states_mainline.json": {
+      "bytes": 48709,
+      "sha256": "733849be21cee065525cf22b4094f4cc9232c002c4f99cc2a3e6c7bff10b6d18"
     }
   },
   "secondary_sources": {
@@ -310,7 +322,7 @@
       "upstream_commit": "d849b220082e113d8a17303509fb44d420c543d5",
       "commit_time": "2026-09-10T00:34:27Z",
       "license": "MIT",
-      "role": "current_mainline_move_mechanic_categories",
+      "role": "current_mainline_move_and_ability_mechanic_categories",
       "files": {
         "moves.ts": {
           "bytes": 484536,
@@ -320,12 +332,37 @@
           "bytes": 24470,
           "sha256": "da92dcfbbd099c76693b75062569e10e471c86f81d6a9e8488eebc11f1da2d19"
         },
+        "abilities.ts": {
+          "bytes": 156774,
+          "sha256": "818edd100c8eb5bdf4d4ded8dd1b1ce9d394f87f40f7d9d53a5414276e84f82b"
+        },
+        "dex-abilities.ts": {
+          "bytes": 4194,
+          "sha256": "9ec7acb30cef3c2681977ab833931b2a89e7bb48a884ae7f959981bc93797d3f"
+        },
+        "conditions.ts": {
+          "bytes": 28860,
+          "sha256": "03ec1b90913f864a0baab0574a70abb856d5e84f722acf96ab11a7601a72fc35"
+        },
         "LICENSE": {
           "bytes": 1136,
           "sha256": "b2002a9fd52ba8db3783a05fbdebfb09c34fd09513b90f6b390a2c0dfbc93ed0"
         }
       }
+    },
+    "pokemon-encyclopedia-ability-infobox": {
+      "repository_url": "https://wiki.52poke.com",
+      "upstream_commit": "07627acd74ca8afa84ee04a95ed766dc3519ab3ecf0cb625e66dc8498a741fee",
+      "commit_time": "2026-09-12T05:00:32Z",
+      "license": "CC-BY-NC-SA-3.0",
+      "role": "current_mainline_ability_infobox_properties",
+      "files": {
+        "ability_infobox_mainline.json": {
+          "bytes": 170879,
+          "sha256": "711296ba9384ffcd66a5952242fa60eca0e5dc43bb6737c3a94d0138cfedcd17"
+        }
+      }
     }
   },
-  "manifest_sha256": "de2e24ec4147b1a821237b661a302d01a64865e60e1b3e2c06500444e2bf778c"
+  "manifest_sha256": "76ce879273ed5cb9f2d3452da63aa03b8d34858c76d39cd5df5aeea5d7e9f0aa"
 }

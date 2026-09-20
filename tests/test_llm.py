@@ -44,6 +44,11 @@ class LLMAdapterTests(unittest.TestCase):
         self.assertIn("Markdown", SYSTEM_PROMPT)
         self.assertIn("HTML", SYSTEM_PROMPT)
         self.assertIn("依据：本地宝可梦知识库", SYSTEM_PROMPT)
+        self.assertIn("matched_abilities", SYSTEM_PROMPT)
+        self.assertIn("进化方式和进化条件只能根据", SYSTEM_PROMPT)
+        self.assertIn("Mega 等非默认形态纳入结果", SYSTEM_PROMPT)
+        self.assertIn("绝不能直接等同于四种场地 terrain", SYSTEM_PROMPT)
+        self.assertIn("lookup_battle_state", SYSTEM_PROMPT)
 
     def test_expired_total_deadline_stops_before_another_api_call(self) -> None:
         transport = QueueTransport([])

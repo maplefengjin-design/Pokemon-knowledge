@@ -1,0 +1,6344 @@
+{
+  "schema_version": 1,
+  "source_id": "pokemon-encyclopedia-ability-infobox",
+  "source_url": "https://wiki.52poke.com",
+  "license": "CC-BY-NC-SA-3.0",
+  "fetched_at": "2026-09-13T11:51:56.392586+00:00",
+  "revision_digest": "07627acd74ca8afa84ee04a95ed766dc3519ab3ecf0cb625e66dc8498a741fee",
+  "latest_revision_timestamp": "2026-09-12T05:00:32Z",
+  "ruleset_scope": "current-mainline",
+  "categories": [
+    {
+      "source_field": "Skillswap",
+      "identifier": "skill-swap",
+      "default": "yes",
+      "positive_label_zh": "可以被交换的特性",
+      "negative_label_zh": "不能被交换的特性",
+      "description_zh": "能否被特性互换交换。"
+    },
+    {
+      "source_field": "Change",
+      "identifier": "ability-change",
+      "default": "yes",
+      "positive_label_zh": "可以被其他特性覆盖的特性",
+      "negative_label_zh": "不能被其他特性覆盖的特性",
+      "description_zh": "能否被招式或特性的改写效果覆盖。"
+    },
+    {
+      "source_field": "Trace",
+      "identifier": "copyable",
+      "default": "yes",
+      "positive_label_zh": "可以被其他宝可梦复制的特性",
+      "negative_label_zh": "不能被其他宝可梦复制的特性",
+      "description_zh": "能否被其他宝可梦的常规特性复制机制取得。"
+    },
+    {
+      "source_field": "Noability",
+      "identifier": "suppression",
+      "default": "yes",
+      "positive_label_zh": "受无特性状态影响的特性",
+      "negative_label_zh": "不受无特性状态影响的特性",
+      "description_zh": "是否会被胃液、化学变化气体等造成的无特性状态压制。"
+    },
+    {
+      "source_field": "Transform",
+      "identifier": "transform",
+      "default": "yes",
+      "positive_label_zh": "变身时有效的特性",
+      "negative_label_zh": "变身时无效的特性",
+      "description_zh": "宝可梦处于变身状态时，该特性是否有效。"
+    },
+    {
+      "source_field": "Entry",
+      "identifier": "entry",
+      "default": "no",
+      "positive_label_zh": "入场时发动的特性",
+      "negative_label_zh": "不在入场时发动的特性",
+      "description_zh": "该特性是否属于入场时发动的特性。"
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": 1,
+      "identifier": "stench",
+      "wiki_number": 1,
+      "name_zh": "恶臭",
+      "page_title": "恶臭（特性）",
+      "page_id": 1414,
+      "revision_id": 2604358,
+      "revision_timestamp": "2026-07-14T02:54:50Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 2,
+      "identifier": "drizzle",
+      "wiki_number": 2,
+      "name_zh": "降雨",
+      "page_title": "降雨（特性）",
+      "page_id": 1332,
+      "revision_id": 2582269,
+      "revision_timestamp": "2026-05-29T07:36:56Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 3,
+      "identifier": "speed-boost",
+      "wiki_number": 3,
+      "name_zh": "加速",
+      "page_title": "加速（特性）",
+      "page_id": 1410,
+      "revision_id": 2618408,
+      "revision_timestamp": "2026-09-09T08:45:10Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 4,
+      "identifier": "battle-armor",
+      "wiki_number": 4,
+      "name_zh": "戰鬥盔甲",
+      "page_title": "战斗盔甲（特性）",
+      "page_id": 1322,
+      "revision_id": 2561768,
+      "revision_timestamp": "2026-04-08T09:29:27Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 5,
+      "identifier": "sturdy",
+      "wiki_number": 5,
+      "name_zh": "结实",
+      "page_title": "结实（特性）",
+      "page_id": 1417,
+      "revision_id": 2606629,
+      "revision_timestamp": "2026-07-20T05:15:20Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 6,
+      "identifier": "damp",
+      "wiki_number": 6,
+      "name_zh": "湿气",
+      "page_title": "湿气（特性）",
+      "page_id": 1330,
+      "revision_id": 2564231,
+      "revision_timestamp": "2026-04-12T14:46:44Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 7,
+      "identifier": "limber",
+      "wiki_number": 7,
+      "name_zh": "柔软",
+      "page_title": "柔软（特性）",
+      "page_id": 1365,
+      "revision_id": 2610586,
+      "revision_timestamp": "2026-08-07T12:43:29Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 8,
+      "identifier": "sand-veil",
+      "wiki_number": 8,
+      "name_zh": "沙隐",
+      "page_title": "沙隐（特性）",
+      "page_id": 1394,
+      "revision_id": 2618388,
+      "revision_timestamp": "2026-09-09T08:32:52Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 9,
+      "identifier": "static",
+      "wiki_number": 9,
+      "name_zh": "静电",
+      "page_title": "静电（特性）",
+      "page_id": 1412,
+      "revision_id": 2608009,
+      "revision_timestamp": "2026-07-25T12:51:00Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 10,
+      "identifier": "volt-absorb",
+      "wiki_number": 10,
+      "name_zh": "蓄电",
+      "page_title": "蓄电（特性）",
+      "page_id": 1432,
+      "revision_id": 2561774,
+      "revision_timestamp": "2026-04-08T09:29:39Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 11,
+      "identifier": "water-absorb",
+      "wiki_number": 11,
+      "name_zh": "储水",
+      "page_title": "储水（特性）",
+      "page_id": 1434,
+      "revision_id": 2561775,
+      "revision_timestamp": "2026-04-08T09:29:41Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 12,
+      "identifier": "oblivious",
+      "wiki_number": 12,
+      "name_zh": "迟钝",
+      "page_title": "迟钝（特性）",
+      "page_id": 1377,
+      "revision_id": 2561776,
+      "revision_timestamp": "2026-04-08T09:29:44Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 13,
+      "identifier": "cloud-nine",
+      "wiki_number": 13,
+      "name_zh": "无关天气",
+      "page_title": "无关天气（特性）",
+      "page_id": 1326,
+      "revision_id": 2606812,
+      "revision_timestamp": "2026-07-21T01:34:41Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 14,
+      "identifier": "compound-eyes",
+      "wiki_number": 14,
+      "name_zh": "复眼",
+      "page_title": "复眼（特性）",
+      "page_id": 1328,
+      "revision_id": 2606649,
+      "revision_timestamp": "2026-07-20T05:23:17Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 15,
+      "identifier": "insomnia",
+      "wiki_number": 15,
+      "name_zh": "不眠",
+      "page_title": "不眠（特性）",
+      "page_id": 1357,
+      "revision_id": 2561779,
+      "revision_timestamp": "2026-04-08T09:29:50Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 16,
+      "identifier": "color-change",
+      "wiki_number": 16,
+      "name_zh": "变色",
+      "page_title": "变色（特性）",
+      "page_id": 1327,
+      "revision_id": 2554191,
+      "revision_timestamp": "2026-03-19T02:39:41Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 17,
+      "identifier": "immunity",
+      "wiki_number": 17,
+      "name_zh": "免疫",
+      "page_title": "免疫（特性）",
+      "page_id": 1355,
+      "revision_id": 2606799,
+      "revision_timestamp": "2026-07-21T01:30:16Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 18,
+      "identifier": "flash-fire",
+      "wiki_number": 18,
+      "name_zh": "引火",
+      "page_title": "引火（特性）",
+      "page_id": 1340,
+      "revision_id": 2561781,
+      "revision_timestamp": "2026-04-08T09:29:54Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 19,
+      "identifier": "shield-dust",
+      "wiki_number": 19,
+      "name_zh": "鳞粉",
+      "page_title": "鳞粉（特性）",
+      "page_id": 1400,
+      "revision_id": 2561782,
+      "revision_timestamp": "2026-04-08T09:29:56Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 20,
+      "identifier": "own-tempo",
+      "wiki_number": 20,
+      "name_zh": "我行我素",
+      "page_title": "我行我素（特性）",
+      "page_id": 1379,
+      "revision_id": 2561783,
+      "revision_timestamp": "2026-04-08T09:29:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 21,
+      "identifier": "suction-cups",
+      "wiki_number": 21,
+      "name_zh": "吸盘",
+      "page_title": "吸盘（特性）",
+      "page_id": 1418,
+      "revision_id": 2561784,
+      "revision_timestamp": "2026-04-08T09:30:00Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 22,
+      "identifier": "intimidate",
+      "wiki_number": 22,
+      "name_zh": "威吓",
+      "page_title": "威吓（特性）",
+      "page_id": 1358,
+      "revision_id": 2608845,
+      "revision_timestamp": "2026-07-28T14:19:57Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 23,
+      "identifier": "shadow-tag",
+      "wiki_number": 23,
+      "name_zh": "踩影",
+      "page_title": "踩影（特性）",
+      "page_id": 1397,
+      "revision_id": 2561786,
+      "revision_timestamp": "2026-04-08T09:30:05Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 24,
+      "identifier": "rough-skin",
+      "wiki_number": 24,
+      "name_zh": "粗糙皮肤",
+      "page_title": "粗糙皮肤（特性）",
+      "page_id": 1391,
+      "revision_id": 2561788,
+      "revision_timestamp": "2026-04-08T09:30:07Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 25,
+      "identifier": "wonder-guard",
+      "wiki_number": 25,
+      "name_zh": "神奇守护",
+      "page_title": "神奇守护（特性）",
+      "page_id": 1437,
+      "revision_id": 2610217,
+      "revision_timestamp": "2026-08-05T12:25:31Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 26,
+      "identifier": "levitate",
+      "wiki_number": 26,
+      "name_zh": "飘浮",
+      "page_title": "飘浮（特性）",
+      "page_id": 1363,
+      "revision_id": 2618516,
+      "revision_timestamp": "2026-09-09T12:43:52Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 27,
+      "identifier": "effect-spore",
+      "wiki_number": 27,
+      "name_zh": "孢子",
+      "page_title": "孢子（特性）",
+      "page_id": 1337,
+      "revision_id": 2618389,
+      "revision_timestamp": "2026-09-09T08:32:55Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 28,
+      "identifier": "synchronize",
+      "wiki_number": 28,
+      "name_zh": "同步",
+      "page_title": "同步（特性）",
+      "page_id": 1422,
+      "revision_id": 2561790,
+      "revision_timestamp": "2026-04-08T09:30:11Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 29,
+      "identifier": "clear-body",
+      "wiki_number": 29,
+      "name_zh": "恒净之躯",
+      "page_title": "恒净之躯（特性）",
+      "page_id": 1325,
+      "revision_id": 2581878,
+      "revision_timestamp": "2026-05-28T01:27:32Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 30,
+      "identifier": "natural-cure",
+      "wiki_number": 30,
+      "name_zh": "自然回复",
+      "page_title": "自然回复（特性）",
+      "page_id": 1375,
+      "revision_id": 2561792,
+      "revision_timestamp": "2026-04-08T09:30:15Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 31,
+      "identifier": "lightning-rod",
+      "wiki_number": 31,
+      "name_zh": "避雷针",
+      "page_title": "避雷针（特性）",
+      "page_id": 1364,
+      "revision_id": 2561793,
+      "revision_timestamp": "2026-04-08T09:30:17Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 32,
+      "identifier": "serene-grace",
+      "wiki_number": 32,
+      "name_zh": "天恩",
+      "page_title": "天恩（特性）",
+      "page_id": 1396,
+      "revision_id": 2618957,
+      "revision_timestamp": "2026-09-10T01:06:24Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 33,
+      "identifier": "swift-swim",
+      "wiki_number": 33,
+      "name_zh": "悠游自如",
+      "page_title": "悠游自如（特性）",
+      "page_id": 1421,
+      "revision_id": 2606646,
+      "revision_timestamp": "2026-07-20T05:22:21Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 34,
+      "identifier": "chlorophyll",
+      "wiki_number": 34,
+      "name_zh": "叶绿素",
+      "page_title": "叶绿素（特性）",
+      "page_id": 1324,
+      "revision_id": 2561795,
+      "revision_timestamp": "2026-04-08T09:30:22Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 35,
+      "identifier": "illuminate",
+      "wiki_number": 35,
+      "name_zh": "发光",
+      "page_title": "发光（特性）",
+      "page_id": 1354,
+      "revision_id": 2561796,
+      "revision_timestamp": "2026-04-08T09:30:24Z",
+      "explicit_fields": [
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 36,
+      "identifier": "trace",
+      "wiki_number": 36,
+      "name_zh": "复制",
+      "page_title": "复制（特性）",
+      "page_id": 1428,
+      "revision_id": 2606811,
+      "revision_timestamp": "2026-07-21T01:34:40Z",
+      "explicit_fields": [
+        "Trace",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 37,
+      "identifier": "huge-power",
+      "wiki_number": 37,
+      "name_zh": "大力士",
+      "page_title": "大力士（特性）",
+      "page_id": 1349,
+      "revision_id": 2609653,
+      "revision_timestamp": "2026-08-01T15:41:55Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 38,
+      "identifier": "poison-point",
+      "wiki_number": 38,
+      "name_zh": "毒刺",
+      "page_title": "毒刺（特性）",
+      "page_id": 1383,
+      "revision_id": 2574536,
+      "revision_timestamp": "2026-05-03T11:38:30Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 39,
+      "identifier": "inner-focus",
+      "wiki_number": 39,
+      "name_zh": "精神力",
+      "page_title": "精神力（特性）",
+      "page_id": 1356,
+      "revision_id": 2561800,
+      "revision_timestamp": "2026-04-08T09:30:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 40,
+      "identifier": "magma-armor",
+      "wiki_number": 40,
+      "name_zh": "熔岩铠甲",
+      "page_title": "熔岩铠甲（特性）",
+      "page_id": 1368,
+      "revision_id": 2561801,
+      "revision_timestamp": "2026-04-08T09:30:36Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 41,
+      "identifier": "water-veil",
+      "wiki_number": 41,
+      "name_zh": "水幕",
+      "page_title": "水幕（特性）",
+      "page_id": 1435,
+      "revision_id": 2555529,
+      "revision_timestamp": "2026-03-21T02:33:03Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 42,
+      "identifier": "magnet-pull",
+      "wiki_number": 42,
+      "name_zh": "磁力",
+      "page_title": "磁力（特性）",
+      "page_id": 1369,
+      "revision_id": 2371342,
+      "revision_timestamp": "2024-11-01T08:10:06Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 43,
+      "identifier": "soundproof",
+      "wiki_number": 43,
+      "name_zh": "隔音",
+      "page_title": "隔音（特性）",
+      "page_id": 1409,
+      "revision_id": 2578589,
+      "revision_timestamp": "2026-05-17T13:02:45Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 44,
+      "identifier": "rain-dish",
+      "wiki_number": 44,
+      "name_zh": "雨盘",
+      "page_title": "雨盘（特性）",
+      "page_id": 1387,
+      "revision_id": 2574295,
+      "revision_timestamp": "2026-05-02T12:57:25Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 45,
+      "identifier": "sand-stream",
+      "wiki_number": 45,
+      "name_zh": "扬沙",
+      "page_title": "扬沙（特性）",
+      "page_id": 1393,
+      "revision_id": 2561804,
+      "revision_timestamp": "2026-04-08T09:30:42Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 46,
+      "identifier": "pressure",
+      "wiki_number": 46,
+      "name_zh": "压迫感",
+      "page_title": "压迫感（特性）",
+      "page_id": 1384,
+      "revision_id": 2561805,
+      "revision_timestamp": "2026-04-08T09:30:45Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 47,
+      "identifier": "thick-fat",
+      "wiki_number": 47,
+      "name_zh": "厚脂肪",
+      "page_title": "厚脂肪（特性）",
+      "page_id": 1425,
+      "revision_id": 2561806,
+      "revision_timestamp": "2026-04-08T09:30:47Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 48,
+      "identifier": "early-bird",
+      "wiki_number": 48,
+      "name_zh": "早起",
+      "page_title": "早起（特性）",
+      "page_id": 1336,
+      "revision_id": 2561807,
+      "revision_timestamp": "2026-04-08T09:30:49Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 49,
+      "identifier": "flame-body",
+      "wiki_number": 49,
+      "name_zh": "火焰之躯",
+      "page_title": "火焰之躯（特性）",
+      "page_id": 1339,
+      "revision_id": 2581879,
+      "revision_timestamp": "2026-05-28T01:27:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 50,
+      "identifier": "run-away",
+      "wiki_number": 50,
+      "name_zh": "逃跑",
+      "page_title": "逃跑（特性）",
+      "page_id": 1392,
+      "revision_id": 2618958,
+      "revision_timestamp": "2026-09-10T01:06:35Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 51,
+      "identifier": "keen-eye",
+      "wiki_number": 51,
+      "name_zh": "锐利目光",
+      "page_title": "锐利目光（特性）",
+      "page_id": 1360,
+      "revision_id": 2585396,
+      "revision_timestamp": "2026-06-05T23:41:04Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 52,
+      "identifier": "hyper-cutter",
+      "wiki_number": 52,
+      "name_zh": "怪力钳",
+      "page_title": "怪力钳（特性）",
+      "page_id": 1352,
+      "revision_id": 2613983,
+      "revision_timestamp": "2026-08-21T00:36:54Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 53,
+      "identifier": "pickup",
+      "wiki_number": 53,
+      "name_zh": "撿拾",
+      "page_title": "捡拾（特性）",
+      "page_id": 1380,
+      "revision_id": 2561811,
+      "revision_timestamp": "2026-04-08T09:30:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 54,
+      "identifier": "truant",
+      "wiki_number": 54,
+      "name_zh": "懒惰",
+      "page_title": "懒惰（特性）",
+      "page_id": 1433,
+      "revision_id": 2342858,
+      "revision_timestamp": "2024-06-22T14:43:40Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 55,
+      "identifier": "hustle",
+      "wiki_number": 55,
+      "name_zh": "活力",
+      "page_title": "活力（特性）",
+      "page_id": 1350,
+      "revision_id": 2561812,
+      "revision_timestamp": "2026-04-08T09:31:01Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 56,
+      "identifier": "cute-charm",
+      "wiki_number": 56,
+      "name_zh": "迷人之躯",
+      "page_title": "迷人之躯（特性）",
+      "page_id": 1329,
+      "revision_id": 2561813,
+      "revision_timestamp": "2026-04-08T09:31:03Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 57,
+      "identifier": "plus",
+      "wiki_number": 57,
+      "name_zh": "正电",
+      "page_title": "正电（特性）",
+      "page_id": 1381,
+      "revision_id": 2561814,
+      "revision_timestamp": "2026-04-08T09:31:05Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 58,
+      "identifier": "minus",
+      "wiki_number": 58,
+      "name_zh": "负电",
+      "page_title": "负电（特性）",
+      "page_id": 1371,
+      "revision_id": 2561815,
+      "revision_timestamp": "2026-04-08T09:31:08Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 59,
+      "identifier": "forecast",
+      "wiki_number": 59,
+      "name_zh": "阴晴不定",
+      "page_title": "阴晴不定（特性）",
+      "page_id": 1342,
+      "revision_id": 2599762,
+      "revision_timestamp": "2026-06-29T15:13:12Z",
+      "explicit_fields": [
+        "Trace",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 60,
+      "identifier": "sticky-hold",
+      "wiki_number": 60,
+      "name_zh": "黏着",
+      "page_title": "黏着（特性）",
+      "page_id": 1415,
+      "revision_id": 2620227,
+      "revision_timestamp": "2026-09-12T04:59:57Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 61,
+      "identifier": "shed-skin",
+      "wiki_number": 61,
+      "name_zh": "蜕皮",
+      "page_title": "蜕皮（特性）",
+      "page_id": 1398,
+      "revision_id": 2618528,
+      "revision_timestamp": "2026-09-09T13:00:39Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 62,
+      "identifier": "guts",
+      "wiki_number": 62,
+      "name_zh": "毅力",
+      "page_title": "毅力（特性）",
+      "page_id": 1346,
+      "revision_id": 2581587,
+      "revision_timestamp": "2026-05-27T08:13:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 63,
+      "identifier": "marvel-scale",
+      "wiki_number": null,
+      "name_zh": "神奇鱗片",
+      "page_title": "神奇鳞片（特性）",
+      "page_id": 1370,
+      "revision_id": 2562097,
+      "revision_timestamp": "2026-04-08T16:30:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 64,
+      "identifier": "liquid-ooze",
+      "wiki_number": 64,
+      "name_zh": "污泥浆",
+      "page_title": "污泥浆（特性）",
+      "page_id": 1366,
+      "revision_id": 2618391,
+      "revision_timestamp": "2026-09-09T08:32:59Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 65,
+      "identifier": "overgrow",
+      "wiki_number": 65,
+      "name_zh": "茂盛",
+      "page_title": "茂盛（特性）",
+      "page_id": 1378,
+      "revision_id": 2606800,
+      "revision_timestamp": "2026-07-21T01:30:17Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 66,
+      "identifier": "blaze",
+      "wiki_number": 66,
+      "name_zh": "猛火",
+      "page_title": "猛火（特性）",
+      "page_id": 1323,
+      "revision_id": 2606814,
+      "revision_timestamp": "2026-07-21T01:36:31Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 67,
+      "identifier": "torrent",
+      "wiki_number": 67,
+      "name_zh": "激流",
+      "page_title": "激流（特性）",
+      "page_id": 1427,
+      "revision_id": 2561822,
+      "revision_timestamp": "2026-04-08T09:31:26Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 68,
+      "identifier": "swarm",
+      "wiki_number": null,
+      "name_zh": "蟲之預感",
+      "page_title": "虫之预感（特性）",
+      "page_id": 1420,
+      "revision_id": 2574640,
+      "revision_timestamp": "2026-05-03T18:10:38Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 69,
+      "identifier": "rock-head",
+      "wiki_number": 69,
+      "name_zh": "坚硬脑袋",
+      "page_title": "坚硬脑袋（特性）",
+      "page_id": 1390,
+      "revision_id": 2561823,
+      "revision_timestamp": "2026-04-08T09:31:28Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 70,
+      "identifier": "drought",
+      "wiki_number": 70,
+      "name_zh": "日照",
+      "page_title": "日照（特性）",
+      "page_id": 1333,
+      "revision_id": 2561824,
+      "revision_timestamp": "2026-04-08T09:31:30Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 71,
+      "identifier": "arena-trap",
+      "wiki_number": 71,
+      "name_zh": "沙穴",
+      "page_title": "沙穴（特性）",
+      "page_id": 1321,
+      "revision_id": 2555485,
+      "revision_timestamp": "2026-03-21T02:11:21Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 72,
+      "identifier": "vital-spirit",
+      "wiki_number": 72,
+      "name_zh": "干劲",
+      "page_title": "干劲（特性）",
+      "page_id": 1431,
+      "revision_id": 2561825,
+      "revision_timestamp": "2026-04-08T09:31:32Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 73,
+      "identifier": "white-smoke",
+      "wiki_number": 73,
+      "name_zh": "白色煙霧",
+      "page_title": "白色烟雾（特性）",
+      "page_id": 1436,
+      "revision_id": 2561826,
+      "revision_timestamp": "2026-04-08T09:31:34Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 74,
+      "identifier": "pure-power",
+      "wiki_number": 74,
+      "name_zh": "瑜伽之力",
+      "page_title": "瑜伽之力（特性）",
+      "page_id": 1385,
+      "revision_id": 2609652,
+      "revision_timestamp": "2026-08-01T15:41:49Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 75,
+      "identifier": "shell-armor",
+      "wiki_number": 75,
+      "name_zh": "硬壳盔甲",
+      "page_title": "硬壳盔甲（特性）",
+      "page_id": 1399,
+      "revision_id": 2594980,
+      "revision_timestamp": "2026-06-17T07:57:27Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 76,
+      "identifier": "air-lock",
+      "wiki_number": 76,
+      "name_zh": "气闸",
+      "page_title": "气闸（特性）",
+      "page_id": 1318,
+      "revision_id": 2555546,
+      "revision_timestamp": "2026-03-21T02:51:30Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 77,
+      "identifier": "tangled-feet",
+      "wiki_number": 77,
+      "name_zh": "蹒跚",
+      "page_title": "蹒跚（特性）",
+      "page_id": 1423,
+      "revision_id": 2561829,
+      "revision_timestamp": "2026-04-08T09:31:41Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 78,
+      "identifier": "motor-drive",
+      "wiki_number": 78,
+      "name_zh": "电气引擎",
+      "page_title": "电气引擎（特性）",
+      "page_id": 1373,
+      "revision_id": 2561830,
+      "revision_timestamp": "2026-04-08T09:31:43Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 79,
+      "identifier": "rivalry",
+      "wiki_number": 79,
+      "name_zh": "斗争心",
+      "page_title": "斗争心（特性）",
+      "page_id": 1389,
+      "revision_id": 2561831,
+      "revision_timestamp": "2026-04-08T09:31:45Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 80,
+      "identifier": "steadfast",
+      "wiki_number": 80,
+      "name_zh": "不屈之心",
+      "page_title": "不屈之心（特性）",
+      "page_id": 1413,
+      "revision_id": 2561832,
+      "revision_timestamp": "2026-04-08T09:31:47Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 81,
+      "identifier": "snow-cloak",
+      "wiki_number": 81,
+      "name_zh": "雪隐",
+      "page_title": "雪隐（特性）",
+      "page_id": 1405,
+      "revision_id": 2578279,
+      "revision_timestamp": "2026-05-15T10:45:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 82,
+      "identifier": "gluttony",
+      "wiki_number": 82,
+      "name_zh": "贪吃鬼",
+      "page_title": "贪吃鬼（特性）",
+      "page_id": 1345,
+      "revision_id": 2561834,
+      "revision_timestamp": "2026-04-08T09:31:51Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 83,
+      "identifier": "anger-point",
+      "wiki_number": 83,
+      "name_zh": "愤怒穴位",
+      "page_title": "愤怒穴位（特性）",
+      "page_id": 1319,
+      "revision_id": 2561835,
+      "revision_timestamp": "2026-04-08T09:31:53Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 84,
+      "identifier": "unburden",
+      "wiki_number": 84,
+      "name_zh": "轻装",
+      "page_title": "轻装（特性）",
+      "page_id": 1430,
+      "revision_id": 2561836,
+      "revision_timestamp": "2026-04-08T09:31:56Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 85,
+      "identifier": "heatproof",
+      "wiki_number": 85,
+      "name_zh": "耐热",
+      "page_title": "耐热（特性）",
+      "page_id": 1347,
+      "revision_id": 2561837,
+      "revision_timestamp": "2026-04-08T09:31:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 86,
+      "identifier": "simple",
+      "wiki_number": 86,
+      "name_zh": "单纯",
+      "page_title": "单纯（特性）",
+      "page_id": 1401,
+      "revision_id": 2561838,
+      "revision_timestamp": "2026-04-08T09:32:01Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 87,
+      "identifier": "dry-skin",
+      "wiki_number": 87,
+      "name_zh": "干燥皮肤",
+      "page_title": "干燥皮肤（特性）",
+      "page_id": 1334,
+      "revision_id": 2573925,
+      "revision_timestamp": "2026-05-01T06:12:27Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 88,
+      "identifier": "download",
+      "wiki_number": 88,
+      "name_zh": "下载",
+      "page_title": "下载（特性）",
+      "page_id": 1331,
+      "revision_id": 2573524,
+      "revision_timestamp": "2026-04-29T12:24:56Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 89,
+      "identifier": "iron-fist",
+      "wiki_number": 89,
+      "name_zh": "铁拳",
+      "page_title": "铁拳（特性）",
+      "page_id": 1359,
+      "revision_id": 2618623,
+      "revision_timestamp": "2026-09-09T15:46:36Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 90,
+      "identifier": "poison-heal",
+      "wiki_number": 90,
+      "name_zh": "毒疗",
+      "page_title": "毒疗（特性）",
+      "page_id": 1382,
+      "revision_id": 2561841,
+      "revision_timestamp": "2026-04-08T09:32:07Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 91,
+      "identifier": "adaptability",
+      "wiki_number": 91,
+      "name_zh": "适应力",
+      "page_title": "适应力（特性）",
+      "page_id": 1316,
+      "revision_id": 2561842,
+      "revision_timestamp": "2026-04-08T09:32:10Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 92,
+      "identifier": "skill-link",
+      "wiki_number": 92,
+      "name_zh": "连续攻击",
+      "page_title": "连续攻击（特性）",
+      "page_id": 1402,
+      "revision_id": 2561843,
+      "revision_timestamp": "2026-04-08T09:32:12Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 93,
+      "identifier": "hydration",
+      "wiki_number": 93,
+      "name_zh": "湿润之躯",
+      "page_title": "湿润之躯（特性）",
+      "page_id": 1351,
+      "revision_id": 2561844,
+      "revision_timestamp": "2026-04-08T09:32:14Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 94,
+      "identifier": "solar-power",
+      "wiki_number": 94,
+      "name_zh": "太阳之力",
+      "page_title": "太阳之力（特性）",
+      "page_id": 1407,
+      "revision_id": 2561845,
+      "revision_timestamp": "2026-04-08T09:32:16Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 95,
+      "identifier": "quick-feet",
+      "wiki_number": 95,
+      "name_zh": "飞毛腿",
+      "page_title": "飞毛腿（特性）",
+      "page_id": 1386,
+      "revision_id": 2561846,
+      "revision_timestamp": "2026-04-08T09:32:18Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 96,
+      "identifier": "normalize",
+      "wiki_number": 96,
+      "name_zh": "一般皮肤",
+      "page_title": "一般皮肤（特性）",
+      "page_id": 1314,
+      "revision_id": 2575307,
+      "revision_timestamp": "2026-05-05T11:56:49Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 97,
+      "identifier": "sniper",
+      "wiki_number": 97,
+      "name_zh": "狙击手",
+      "page_title": "狙击手（特性）",
+      "page_id": 1404,
+      "revision_id": 2561847,
+      "revision_timestamp": "2026-04-08T09:32:21Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 98,
+      "identifier": "magic-guard",
+      "wiki_number": 98,
+      "name_zh": "魔法防守",
+      "page_title": "魔法防守（特性）",
+      "page_id": 1367,
+      "revision_id": 2561848,
+      "revision_timestamp": "2026-04-08T09:32:23Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 99,
+      "identifier": "no-guard",
+      "wiki_number": 99,
+      "name_zh": "无防守",
+      "page_title": "无防守（特性）",
+      "page_id": 1376,
+      "revision_id": 2584445,
+      "revision_timestamp": "2026-06-03T14:51:48Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 100,
+      "identifier": "stall",
+      "wiki_number": 100,
+      "name_zh": "慢出",
+      "page_title": "慢出（特性）",
+      "page_id": 1411,
+      "revision_id": 2561850,
+      "revision_timestamp": "2026-04-08T09:32:29Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 101,
+      "identifier": "technician",
+      "wiki_number": 101,
+      "name_zh": "技术高手",
+      "page_title": "技术高手（特性）",
+      "page_id": 1424,
+      "revision_id": 2619636,
+      "revision_timestamp": "2026-09-11T10:09:09Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 102,
+      "identifier": "leaf-guard",
+      "wiki_number": 102,
+      "name_zh": "叶子防守",
+      "page_title": "叶子防守（特性）",
+      "page_id": 1362,
+      "revision_id": 2563634,
+      "revision_timestamp": "2026-04-11T17:46:44Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 103,
+      "identifier": "klutz",
+      "wiki_number": 103,
+      "name_zh": "笨拙",
+      "page_title": "笨拙（特性）",
+      "page_id": 1361,
+      "revision_id": 2561853,
+      "revision_timestamp": "2026-04-08T09:32:36Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 104,
+      "identifier": "mold-breaker",
+      "wiki_number": 104,
+      "name_zh": "破格",
+      "page_title": "破格（特性）",
+      "page_id": 1372,
+      "revision_id": 2561854,
+      "revision_timestamp": "2026-04-08T09:32:38Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 105,
+      "identifier": "super-luck",
+      "wiki_number": 105,
+      "name_zh": "超幸运",
+      "page_title": "超幸运（特性）",
+      "page_id": 1419,
+      "revision_id": 2561855,
+      "revision_timestamp": "2026-04-08T09:32:40Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 106,
+      "identifier": "aftermath",
+      "wiki_number": 106,
+      "name_zh": "引爆",
+      "page_title": "诱爆（特性）",
+      "page_id": 1317,
+      "revision_id": 2564232,
+      "revision_timestamp": "2026-04-12T14:46:44Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 107,
+      "identifier": "anticipation",
+      "wiki_number": 107,
+      "name_zh": "危险预知",
+      "page_title": "危险预知（特性）",
+      "page_id": 1320,
+      "revision_id": 2618524,
+      "revision_timestamp": "2026-09-09T12:57:46Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 108,
+      "identifier": "forewarn",
+      "wiki_number": 108,
+      "name_zh": "预知梦",
+      "page_title": "预知梦（特性）",
+      "page_id": 1343,
+      "revision_id": 2618392,
+      "revision_timestamp": "2026-09-09T08:33:01Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 109,
+      "identifier": "unaware",
+      "wiki_number": 109,
+      "name_zh": "纯朴",
+      "page_title": "纯朴（特性）",
+      "page_id": 1429,
+      "revision_id": 2561858,
+      "revision_timestamp": "2026-04-08T09:32:48Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 110,
+      "identifier": "tinted-lens",
+      "wiki_number": 110,
+      "name_zh": "有色眼镜",
+      "page_title": "有色眼镜（特性）",
+      "page_id": 1426,
+      "revision_id": 2308327,
+      "revision_timestamp": "2024-02-01T14:28:36Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 111,
+      "identifier": "filter",
+      "wiki_number": 111,
+      "name_zh": "过滤",
+      "page_title": "过滤（特性）",
+      "page_id": 1338,
+      "revision_id": 2561859,
+      "revision_timestamp": "2026-04-08T09:32:50Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 112,
+      "identifier": "slow-start",
+      "wiki_number": 112,
+      "name_zh": "慢启动",
+      "page_title": "慢启动（特性）",
+      "page_id": 1403,
+      "revision_id": 2554396,
+      "revision_timestamp": "2026-03-19T04:15:30Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 113,
+      "identifier": "scrappy",
+      "wiki_number": 113,
+      "name_zh": "胆量",
+      "page_title": "胆量（特性）",
+      "page_id": 1395,
+      "revision_id": 2561860,
+      "revision_timestamp": "2026-04-08T09:32:52Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 114,
+      "identifier": "storm-drain",
+      "wiki_number": 114,
+      "name_zh": "引水",
+      "page_title": "引水（特性）",
+      "page_id": 1416,
+      "revision_id": 2620228,
+      "revision_timestamp": "2026-09-12T05:00:11Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 115,
+      "identifier": "ice-body",
+      "wiki_number": 115,
+      "name_zh": "冰冻之躯",
+      "page_title": "冰冻之躯（特性）",
+      "page_id": 1353,
+      "revision_id": 2561861,
+      "revision_timestamp": "2026-04-08T09:32:54Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 116,
+      "identifier": "solid-rock",
+      "wiki_number": 116,
+      "name_zh": "坚硬岩石",
+      "page_title": "坚硬岩石（特性）",
+      "page_id": 1408,
+      "revision_id": 2561862,
+      "revision_timestamp": "2026-04-08T09:32:56Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 117,
+      "identifier": "snow-warning",
+      "wiki_number": 117,
+      "name_zh": "降雪",
+      "page_title": "降雪（特性）",
+      "page_id": 1406,
+      "revision_id": 2561863,
+      "revision_timestamp": "2026-04-08T09:32:59Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 118,
+      "identifier": "honey-gather",
+      "wiki_number": 118,
+      "name_zh": "采蜜",
+      "page_title": "采蜜（特性）",
+      "page_id": 1348,
+      "revision_id": 2555528,
+      "revision_timestamp": "2026-03-21T02:32:57Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 119,
+      "identifier": "frisk",
+      "wiki_number": 119,
+      "name_zh": "察觉",
+      "page_title": "察觉（特性）",
+      "page_id": 1344,
+      "revision_id": 2561864,
+      "revision_timestamp": "2026-04-08T09:33:01Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 120,
+      "identifier": "reckless",
+      "wiki_number": 120,
+      "name_zh": "舍身",
+      "page_title": "舍身（特性）",
+      "page_id": 1388,
+      "revision_id": 2561865,
+      "revision_timestamp": "2026-04-08T09:33:03Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 121,
+      "identifier": "multitype",
+      "wiki_number": 121,
+      "name_zh": "多属性",
+      "page_title": "多属性（特性）",
+      "page_id": 1374,
+      "revision_id": 2504916,
+      "revision_timestamp": "2025-12-09T10:55:37Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 122,
+      "identifier": "flower-gift",
+      "wiki_number": 122,
+      "name_zh": "花之礼",
+      "page_title": "花之礼（特性）",
+      "page_id": 1341,
+      "revision_id": 2555568,
+      "revision_timestamp": "2026-03-21T04:30:03Z",
+      "explicit_fields": [
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 123,
+      "identifier": "bad-dreams",
+      "wiki_number": 123,
+      "name_zh": "梦魇",
+      "page_title": "梦魇（特性）",
+      "page_id": 1335,
+      "revision_id": 2611436,
+      "revision_timestamp": "2026-08-12T03:59:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 124,
+      "identifier": "pickpocket",
+      "wiki_number": 124,
+      "name_zh": "顺手牵羊",
+      "page_title": "顺手牵羊（特性）",
+      "page_id": 3228,
+      "revision_id": 2561866,
+      "revision_timestamp": "2026-04-08T09:33:05Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 125,
+      "identifier": "sheer-force",
+      "wiki_number": 125,
+      "name_zh": "强行",
+      "page_title": "强行（特性）",
+      "page_id": 3234,
+      "revision_id": 2561867,
+      "revision_timestamp": "2026-04-08T09:33:07Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 126,
+      "identifier": "contrary",
+      "wiki_number": 126,
+      "name_zh": "唱反调",
+      "page_title": "唱反调（特性）",
+      "page_id": 3251,
+      "revision_id": 2611016,
+      "revision_timestamp": "2026-08-10T10:47:45Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 127,
+      "identifier": "unnerve",
+      "wiki_number": 127,
+      "name_zh": "紧张感",
+      "page_title": "紧张感（特性）",
+      "page_id": 3254,
+      "revision_id": 2561869,
+      "revision_timestamp": "2026-04-08T09:33:11Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 128,
+      "identifier": "defiant",
+      "wiki_number": 128,
+      "name_zh": "不服输",
+      "page_title": "不服输（特性）",
+      "page_id": 3267,
+      "revision_id": 2594983,
+      "revision_timestamp": "2026-06-17T07:59:00Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 129,
+      "identifier": "defeatist",
+      "wiki_number": 129,
+      "name_zh": "软弱",
+      "page_title": "软弱（特性）",
+      "page_id": 3275,
+      "revision_id": 2554423,
+      "revision_timestamp": "2026-03-19T04:21:09Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 130,
+      "identifier": "cursed-body",
+      "wiki_number": 130,
+      "name_zh": "诅咒之躯",
+      "page_title": "咒术之躯（特性）",
+      "page_id": 3276,
+      "revision_id": 2561871,
+      "revision_timestamp": "2026-04-08T09:33:16Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 131,
+      "identifier": "healer",
+      "wiki_number": 131,
+      "name_zh": "治愈之心",
+      "page_title": "治愈之心（特性）",
+      "page_id": 3280,
+      "revision_id": 2595579,
+      "revision_timestamp": "2026-06-18T13:15:20Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 132,
+      "identifier": "friend-guard",
+      "wiki_number": 132,
+      "name_zh": "友情防守",
+      "page_title": "友情防守（特性）",
+      "page_id": 3284,
+      "revision_id": 2618954,
+      "revision_timestamp": "2026-09-10T01:04:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 133,
+      "identifier": "weak-armor",
+      "wiki_number": 133,
+      "name_zh": "碎裂铠甲",
+      "page_title": "碎裂铠甲（特性）",
+      "page_id": 3290,
+      "revision_id": 2561874,
+      "revision_timestamp": "2026-04-08T09:33:22Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 134,
+      "identifier": "heavy-metal",
+      "wiki_number": 134,
+      "name_zh": "重金属",
+      "page_title": "重金属（特性）",
+      "page_id": 3299,
+      "revision_id": 2566634,
+      "revision_timestamp": "2026-04-15T04:48:46Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 135,
+      "identifier": "light-metal",
+      "wiki_number": 135,
+      "name_zh": "轻金属",
+      "page_title": "轻金属（特性）",
+      "page_id": 3305,
+      "revision_id": 2566633,
+      "revision_timestamp": "2026-04-15T04:48:38Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 136,
+      "identifier": "multiscale",
+      "wiki_number": 136,
+      "name_zh": "多重鳞片",
+      "page_title": "多重鳞片（特性）",
+      "page_id": 3311,
+      "revision_id": 2561877,
+      "revision_timestamp": "2026-04-08T09:33:28Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 137,
+      "identifier": "toxic-boost",
+      "wiki_number": 137,
+      "name_zh": "中毒激升",
+      "page_title": "中毒激升（特性）",
+      "page_id": 3314,
+      "revision_id": 2555514,
+      "revision_timestamp": "2026-03-21T02:27:03Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 138,
+      "identifier": "flare-boost",
+      "wiki_number": 138,
+      "name_zh": "受热激升",
+      "page_title": "受热激升（特性）",
+      "page_id": 3316,
+      "revision_id": 2581877,
+      "revision_timestamp": "2026-05-28T01:27:32Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 139,
+      "identifier": "harvest",
+      "wiki_number": 139,
+      "name_zh": "收获",
+      "page_title": "收获（特性）",
+      "page_id": 3319,
+      "revision_id": 2561878,
+      "revision_timestamp": "2026-04-08T09:33:30Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 140,
+      "identifier": "telepathy",
+      "wiki_number": 140,
+      "name_zh": "心灵感应",
+      "page_title": "心灵感应（特性）",
+      "page_id": 3323,
+      "revision_id": 2561879,
+      "revision_timestamp": "2026-04-08T09:33:32Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 141,
+      "identifier": "moody",
+      "wiki_number": 141,
+      "name_zh": "心情不定",
+      "page_title": "心情不定（特性）",
+      "page_id": 3334,
+      "revision_id": 2561880,
+      "revision_timestamp": "2026-04-08T09:33:34Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 142,
+      "identifier": "overcoat",
+      "wiki_number": 142,
+      "name_zh": "防尘",
+      "page_title": "防尘（特性）",
+      "page_id": 3342,
+      "revision_id": 2618527,
+      "revision_timestamp": "2026-09-09T13:00:20Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 143,
+      "identifier": "poison-touch",
+      "wiki_number": 143,
+      "name_zh": "毒手",
+      "page_title": "毒手（特性）",
+      "page_id": 3350,
+      "revision_id": 2561882,
+      "revision_timestamp": "2026-04-08T09:33:38Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 144,
+      "identifier": "regenerator",
+      "wiki_number": 144,
+      "name_zh": "再生力",
+      "page_title": "再生力（特性）",
+      "page_id": 3355,
+      "revision_id": 2594982,
+      "revision_timestamp": "2026-06-17T07:58:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 145,
+      "identifier": "big-pecks",
+      "wiki_number": 145,
+      "name_zh": "健壮胸肌",
+      "page_title": "健壮胸肌（特性）",
+      "page_id": 3363,
+      "revision_id": 2561884,
+      "revision_timestamp": "2026-04-08T09:33:42Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 146,
+      "identifier": "sand-rush",
+      "wiki_number": 146,
+      "name_zh": "拨沙",
+      "page_title": "拨沙（特性）",
+      "page_id": 3368,
+      "revision_id": 2561885,
+      "revision_timestamp": "2026-04-08T09:33:44Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 147,
+      "identifier": "wonder-skin",
+      "wiki_number": 147,
+      "name_zh": "奇迹皮肤",
+      "page_title": "奇迹皮肤（特性）",
+      "page_id": 3371,
+      "revision_id": 2556048,
+      "revision_timestamp": "2026-03-25T03:15:29Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 148,
+      "identifier": "analytic",
+      "wiki_number": 148,
+      "name_zh": "分析",
+      "page_title": "分析（特性）",
+      "page_id": 3189,
+      "revision_id": 2561886,
+      "revision_timestamp": "2026-04-08T09:33:46Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 149,
+      "identifier": "illusion",
+      "wiki_number": 149,
+      "name_zh": "幻觉",
+      "page_title": "幻觉（特性）",
+      "page_id": 3375,
+      "revision_id": 2561887,
+      "revision_timestamp": "2026-04-08T09:33:49Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 150,
+      "identifier": "imposter",
+      "wiki_number": 150,
+      "name_zh": "变身者",
+      "page_title": "变身者（特性）",
+      "page_id": 3376,
+      "revision_id": 2561888,
+      "revision_timestamp": "2026-04-08T09:33:52Z",
+      "explicit_fields": [
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 151,
+      "identifier": "infiltrator",
+      "wiki_number": 151,
+      "name_zh": "穿透",
+      "page_title": "穿透（特性）",
+      "page_id": 3378,
+      "revision_id": 2561889,
+      "revision_timestamp": "2026-04-08T09:33:56Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 152,
+      "identifier": "mummy",
+      "wiki_number": 152,
+      "name_zh": "木乃伊",
+      "page_title": "木乃伊（特性）",
+      "page_id": 3388,
+      "revision_id": 2610006,
+      "revision_timestamp": "2026-08-03T22:16:30Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 153,
+      "identifier": "moxie",
+      "wiki_number": 153,
+      "name_zh": "自信过度",
+      "page_title": "自信过度（特性）",
+      "page_id": 3389,
+      "revision_id": 2594935,
+      "revision_timestamp": "2026-06-17T05:28:16Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 154,
+      "identifier": "justified",
+      "wiki_number": 154,
+      "name_zh": "正义之心",
+      "page_title": "正义之心（特性）",
+      "page_id": 3396,
+      "revision_id": 2561892,
+      "revision_timestamp": "2026-04-08T09:34:03Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 155,
+      "identifier": "rattled",
+      "wiki_number": 155,
+      "name_zh": "胆怯",
+      "page_title": "胆怯（特性）",
+      "page_id": 3402,
+      "revision_id": 2618959,
+      "revision_timestamp": "2026-09-10T01:06:54Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 156,
+      "identifier": "magic-bounce",
+      "wiki_number": 156,
+      "name_zh": "魔法镜",
+      "page_title": "魔法镜（特性）",
+      "page_id": 3413,
+      "revision_id": 2611223,
+      "revision_timestamp": "2026-08-11T12:27:11Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 157,
+      "identifier": "sap-sipper",
+      "wiki_number": 157,
+      "name_zh": "食草",
+      "page_title": "食草（特性）",
+      "page_id": 3417,
+      "revision_id": 2561894,
+      "revision_timestamp": "2026-04-08T09:34:08Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 158,
+      "identifier": "prankster",
+      "wiki_number": 158,
+      "name_zh": "恶作剧之心",
+      "page_title": "恶作剧之心（特性）",
+      "page_id": 3424,
+      "revision_id": 2618394,
+      "revision_timestamp": "2026-09-09T08:33:06Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 159,
+      "identifier": "sand-force",
+      "wiki_number": 159,
+      "name_zh": "沙之力",
+      "page_title": "沙之力（特性）",
+      "page_id": 3430,
+      "revision_id": 2620229,
+      "revision_timestamp": "2026-09-12T05:00:32Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 160,
+      "identifier": "iron-barbs",
+      "wiki_number": 160,
+      "name_zh": "铁刺",
+      "page_title": "铁刺（特性）",
+      "page_id": 3439,
+      "revision_id": 2555506,
+      "revision_timestamp": "2026-03-21T02:24:59Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 161,
+      "identifier": "zen-mode",
+      "wiki_number": 161,
+      "name_zh": "达摩模式",
+      "page_title": "达摩模式（特性）",
+      "page_id": 3440,
+      "revision_id": 2554473,
+      "revision_timestamp": "2026-03-19T04:42:46Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 162,
+      "identifier": "victory-star",
+      "wiki_number": 162,
+      "name_zh": "胜利之星",
+      "page_title": "胜利之星（特性）",
+      "page_id": 3442,
+      "revision_id": 2308379,
+      "revision_timestamp": "2024-02-01T14:30:41Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 163,
+      "identifier": "turboblaze",
+      "wiki_number": 163,
+      "name_zh": "涡轮火焰",
+      "page_title": "涡轮火焰（特性）",
+      "page_id": 3443,
+      "revision_id": 2455287,
+      "revision_timestamp": "2025-08-02T08:42:51Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 164,
+      "identifier": "teravolt",
+      "wiki_number": 164,
+      "name_zh": "兆级电压",
+      "page_title": "兆级电压（特性）",
+      "page_id": 3444,
+      "revision_id": 2355206,
+      "revision_timestamp": "2024-08-12T10:14:59Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 165,
+      "identifier": "aroma-veil",
+      "wiki_number": 165,
+      "name_zh": "芳香幕",
+      "page_title": "芳香幕（特性）",
+      "page_id": 63968,
+      "revision_id": 2564018,
+      "revision_timestamp": "2026-04-12T14:20:46Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 166,
+      "identifier": "flower-veil",
+      "wiki_number": 166,
+      "name_zh": "花幕",
+      "page_title": "花幕（特性）",
+      "page_id": 63965,
+      "revision_id": 2613984,
+      "revision_timestamp": "2026-08-21T00:44:48Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 167,
+      "identifier": "cheek-pouch",
+      "wiki_number": 167,
+      "name_zh": "頰囊",
+      "page_title": "颊囊（特性）",
+      "page_id": 59567,
+      "revision_id": 2618955,
+      "revision_timestamp": "2026-09-10T01:04:44Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 168,
+      "identifier": "protean",
+      "wiki_number": 168,
+      "name_zh": "变幻自如",
+      "page_title": "变幻自如（特性）",
+      "page_id": 61614,
+      "revision_id": 2612871,
+      "revision_timestamp": "2026-08-15T12:57:34Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 169,
+      "identifier": "fur-coat",
+      "wiki_number": 169,
+      "name_zh": "毛皮大衣",
+      "page_title": "毛皮大衣（特性）",
+      "page_id": 60545,
+      "revision_id": 2617122,
+      "revision_timestamp": "2026-09-02T17:45:44Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 170,
+      "identifier": "magician",
+      "wiki_number": 170,
+      "name_zh": "魔術師",
+      "page_title": "魔术师（特性）",
+      "page_id": 61613,
+      "revision_id": 2561902,
+      "revision_timestamp": "2026-04-08T09:34:29Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 171,
+      "identifier": "bulletproof",
+      "wiki_number": 171,
+      "name_zh": "防弹",
+      "page_title": "防弹（特性）",
+      "page_id": 61487,
+      "revision_id": 2564082,
+      "revision_timestamp": "2026-04-12T14:30:39Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 172,
+      "identifier": "competitive",
+      "wiki_number": 172,
+      "name_zh": "好胜",
+      "page_title": "好胜（特性）",
+      "page_id": 63971,
+      "revision_id": 2589335,
+      "revision_timestamp": "2026-06-08T07:29:12Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 173,
+      "identifier": "strong-jaw",
+      "wiki_number": 173,
+      "name_zh": "强壮之颚",
+      "page_title": "强壮之颚（特性）",
+      "page_id": 60547,
+      "revision_id": 2564249,
+      "revision_timestamp": "2026-04-12T14:48:59Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 174,
+      "identifier": "refrigerate",
+      "wiki_number": 174,
+      "name_zh": "冰冻皮肤",
+      "page_title": "冰冻皮肤（特性）",
+      "page_id": 60546,
+      "revision_id": 2610834,
+      "revision_timestamp": "2026-08-09T00:42:10Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 175,
+      "identifier": "sweet-veil",
+      "wiki_number": 175,
+      "name_zh": "甜幕",
+      "page_title": "甜幕（特性）",
+      "page_id": 59322,
+      "revision_id": 2561907,
+      "revision_timestamp": "2026-04-08T09:34:43Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 176,
+      "identifier": "stance-change",
+      "wiki_number": 176,
+      "name_zh": "战斗切换",
+      "page_title": "战斗切换（特性）",
+      "page_id": 63974,
+      "revision_id": 2561908,
+      "revision_timestamp": "2026-04-08T09:34:45Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 177,
+      "identifier": "gale-wings",
+      "wiki_number": 177,
+      "name_zh": "疾风之翼",
+      "page_title": "疾风之翼（特性）",
+      "page_id": 63914,
+      "revision_id": 2561909,
+      "revision_timestamp": "2026-04-08T09:34:47Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 178,
+      "identifier": "mega-launcher",
+      "wiki_number": 178,
+      "name_zh": "超级发射器",
+      "page_title": "超级发射器（特性）",
+      "page_id": 60431,
+      "revision_id": 2616543,
+      "revision_timestamp": "2026-08-31T11:25:09Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 179,
+      "identifier": "grass-pelt",
+      "wiki_number": 179,
+      "name_zh": "草之毛皮",
+      "page_title": "草之毛皮（特性）",
+      "page_id": 63970,
+      "revision_id": 2618395,
+      "revision_timestamp": "2026-09-09T08:33:08Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 180,
+      "identifier": "symbiosis",
+      "wiki_number": 180,
+      "name_zh": "共生",
+      "page_title": "共生（特性）",
+      "page_id": 63969,
+      "revision_id": 2597002,
+      "revision_timestamp": "2026-06-23T02:43:45Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 181,
+      "identifier": "tough-claws",
+      "wiki_number": 181,
+      "name_zh": "硬爪",
+      "page_title": "硬爪（特性）",
+      "page_id": 60918,
+      "revision_id": 2618513,
+      "revision_timestamp": "2026-09-09T12:27:43Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 182,
+      "identifier": "pixilate",
+      "wiki_number": 182,
+      "name_zh": "妖精皮肤",
+      "page_title": "妖精皮肤（特性）",
+      "page_id": 61611,
+      "revision_id": 2610835,
+      "revision_timestamp": "2026-08-09T00:42:46Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 183,
+      "identifier": "gooey",
+      "wiki_number": 183,
+      "name_zh": "黏滑",
+      "page_title": "黏滑（特性）",
+      "page_id": 63973,
+      "revision_id": 2561914,
+      "revision_timestamp": "2026-04-08T09:34:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 184,
+      "identifier": "aerilate",
+      "wiki_number": 184,
+      "name_zh": "飞行皮肤",
+      "page_title": "飞行皮肤（特性）",
+      "page_id": 61612,
+      "revision_id": 2610837,
+      "revision_timestamp": "2026-08-09T00:43:35Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 185,
+      "identifier": "parental-bond",
+      "wiki_number": 185,
+      "name_zh": "亲子愛",
+      "page_title": "亲子爱（特性）",
+      "page_id": 59657,
+      "revision_id": 2561916,
+      "revision_timestamp": "2026-04-08T09:35:02Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 186,
+      "identifier": "dark-aura",
+      "wiki_number": 186,
+      "name_zh": "暗黑气场",
+      "page_title": "暗黑气场（特性）",
+      "page_id": 59321,
+      "revision_id": 2554600,
+      "revision_timestamp": "2026-03-19T08:14:09Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 187,
+      "identifier": "fairy-aura",
+      "wiki_number": 187,
+      "name_zh": "妖精气场",
+      "page_title": "妖精气场（特性）",
+      "page_id": 59320,
+      "revision_id": 2561917,
+      "revision_timestamp": "2026-04-08T09:35:04Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 188,
+      "identifier": "aura-break",
+      "wiki_number": 188,
+      "name_zh": "氣場破壞",
+      "page_title": "气场破坏（特性）",
+      "page_id": 61227,
+      "revision_id": 2507638,
+      "revision_timestamp": "2025-12-12T03:36:08Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 189,
+      "identifier": "primordial-sea",
+      "wiki_number": 189,
+      "name_zh": "始源之海",
+      "page_title": "始源之海（特性）",
+      "page_id": 77146,
+      "revision_id": 2554602,
+      "revision_timestamp": "2026-03-19T08:14:23Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 190,
+      "identifier": "desolate-land",
+      "wiki_number": 190,
+      "name_zh": "终结之地",
+      "page_title": "终结之地（特性）",
+      "page_id": 77147,
+      "revision_id": 2554603,
+      "revision_timestamp": "2026-03-19T08:14:29Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 191,
+      "identifier": "delta-stream",
+      "wiki_number": 191,
+      "name_zh": "德爾塔氣流",
+      "page_title": "德尔塔气流（特性）",
+      "page_id": 77495,
+      "revision_id": 2554676,
+      "revision_timestamp": "2026-03-19T19:30:52Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 192,
+      "identifier": "stamina",
+      "wiki_number": 192,
+      "name_zh": "持久力",
+      "page_title": "持久力（特性）",
+      "page_id": 98818,
+      "revision_id": 2561918,
+      "revision_timestamp": "2026-04-08T09:35:07Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 193,
+      "identifier": "wimp-out",
+      "wiki_number": 193,
+      "name_zh": "躍躍欲逃",
+      "page_title": "跃跃欲逃（特性）",
+      "page_id": 98795,
+      "revision_id": 2545691,
+      "revision_timestamp": "2026-02-28T11:02:19Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 194,
+      "identifier": "emergency-exit",
+      "wiki_number": 194,
+      "name_zh": "危险回避",
+      "page_title": "危险回避（特性）",
+      "page_id": 109081,
+      "revision_id": 2618396,
+      "revision_timestamp": "2026-09-09T08:33:10Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 195,
+      "identifier": "water-compaction",
+      "wiki_number": 195,
+      "name_zh": "遇水凝固",
+      "page_title": "遇水凝固（特性）",
+      "page_id": 100040,
+      "revision_id": 2566921,
+      "revision_timestamp": "2026-04-16T16:32:49Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 196,
+      "identifier": "merciless",
+      "wiki_number": 196,
+      "name_zh": "不仁不義",
+      "page_title": "不仁不义（特性）",
+      "page_id": 109195,
+      "revision_id": 2561919,
+      "revision_timestamp": "2026-04-08T09:35:09Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 197,
+      "identifier": "shields-down",
+      "wiki_number": 197,
+      "name_zh": "界限盾壳",
+      "page_title": "界限盾壳（特性）",
+      "page_id": 99326,
+      "revision_id": 2554604,
+      "revision_timestamp": "2026-03-19T08:14:33Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 198,
+      "identifier": "stakeout",
+      "wiki_number": 198,
+      "name_zh": "監視",
+      "page_title": "蹲守（特性）",
+      "page_id": 97691,
+      "revision_id": 2618397,
+      "revision_timestamp": "2026-09-09T08:33:12Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 199,
+      "identifier": "water-bubble",
+      "wiki_number": 199,
+      "name_zh": "水泡",
+      "page_title": "水泡（特性）",
+      "page_id": 109143,
+      "revision_id": 2582505,
+      "revision_timestamp": "2026-05-30T08:00:49Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 200,
+      "identifier": "steelworker",
+      "wiki_number": 200,
+      "name_zh": "钢能力者",
+      "page_title": "钢能力者（特性）",
+      "page_id": 109758,
+      "revision_id": 2554606,
+      "revision_timestamp": "2026-03-19T08:14:39Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 201,
+      "identifier": "berserk",
+      "wiki_number": 201,
+      "name_zh": "怒火冲天",
+      "page_title": "怒火冲天（特性）",
+      "page_id": 98238,
+      "revision_id": 2566923,
+      "revision_timestamp": "2026-04-16T16:36:53Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 202,
+      "identifier": "slush-rush",
+      "wiki_number": 202,
+      "name_zh": "拨雪",
+      "page_title": "拨雪（特性）",
+      "page_id": 108649,
+      "revision_id": 2561922,
+      "revision_timestamp": "2026-04-08T09:35:15Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 203,
+      "identifier": "long-reach",
+      "wiki_number": 203,
+      "name_zh": "远隔",
+      "page_title": "远隔（特性）",
+      "page_id": 109759,
+      "revision_id": 2561923,
+      "revision_timestamp": "2026-04-08T09:35:17Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 204,
+      "identifier": "liquid-voice",
+      "wiki_number": 204,
+      "name_zh": "湿润之声",
+      "page_title": "湿润之声（特性）",
+      "page_id": 109763,
+      "revision_id": 2566917,
+      "revision_timestamp": "2026-04-16T16:23:12Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 205,
+      "identifier": "triage",
+      "wiki_number": 205,
+      "name_zh": "先行治療",
+      "page_title": "先行治疗（特性）",
+      "page_id": 98804,
+      "revision_id": 2564379,
+      "revision_timestamp": "2026-04-12T15:13:18Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 206,
+      "identifier": "galvanize",
+      "wiki_number": 206,
+      "name_zh": "电气皮膚",
+      "page_title": "电气皮肤（特性）",
+      "page_id": 108702,
+      "revision_id": 2610833,
+      "revision_timestamp": "2026-08-09T00:41:36Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 207,
+      "identifier": "surge-surfer",
+      "wiki_number": 207,
+      "name_zh": "冲浪之尾",
+      "page_title": "冲浪之尾（特性）",
+      "page_id": 99827,
+      "revision_id": 2561925,
+      "revision_timestamp": "2026-04-08T09:35:22Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 208,
+      "identifier": "schooling",
+      "wiki_number": 208,
+      "name_zh": "魚群",
+      "page_title": "鱼群（特性）",
+      "page_id": 99826,
+      "revision_id": 2406328,
+      "revision_timestamp": "2025-03-26T05:20:58Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 209,
+      "identifier": "disguise",
+      "wiki_number": 209,
+      "name_zh": "畫皮",
+      "page_title": "画皮（特性）",
+      "page_id": 98827,
+      "revision_id": 2561926,
+      "revision_timestamp": "2026-04-08T09:35:24Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 210,
+      "identifier": "battle-bond",
+      "wiki_number": 210,
+      "name_zh": "牵绊变身",
+      "page_title": "牵绊变身（特性）",
+      "page_id": 102040,
+      "revision_id": 2609635,
+      "revision_timestamp": "2026-08-01T13:47:00Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 211,
+      "identifier": "power-construct",
+      "wiki_number": 211,
+      "name_zh": "群聚变形",
+      "page_title": "群聚变形（特性）",
+      "page_id": 97611,
+      "revision_id": 2521557,
+      "revision_timestamp": "2025-12-25T09:54:25Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 212,
+      "identifier": "corrosion",
+      "wiki_number": 212,
+      "name_zh": "腐蚀",
+      "page_title": "腐蚀（特性）",
+      "page_id": 98485,
+      "revision_id": 2561927,
+      "revision_timestamp": "2026-04-08T09:35:26Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 213,
+      "identifier": "comatose",
+      "wiki_number": 213,
+      "name_zh": "绝对睡眠",
+      "page_title": "绝对睡眠（特性）",
+      "page_id": 97572,
+      "revision_id": 2554612,
+      "revision_timestamp": "2026-03-19T08:15:05Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 214,
+      "identifier": "queenly-majesty",
+      "wiki_number": 214,
+      "name_zh": "女王的威嚴",
+      "page_title": "女王的威严（特性）",
+      "page_id": 103108,
+      "revision_id": 2561928,
+      "revision_timestamp": "2026-04-08T09:35:28Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 215,
+      "identifier": "innards-out",
+      "wiki_number": 215,
+      "name_zh": "飞出的内在物",
+      "page_title": "飞出的内在物（特性）",
+      "page_id": 99828,
+      "revision_id": 2561929,
+      "revision_timestamp": "2026-04-08T09:35:30Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 216,
+      "identifier": "dancer",
+      "wiki_number": 216,
+      "name_zh": "舞者",
+      "page_title": "舞者（特性）",
+      "page_id": 99301,
+      "revision_id": 2585342,
+      "revision_timestamp": "2026-06-05T15:26:38Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 217,
+      "identifier": "battery",
+      "wiki_number": 217,
+      "name_zh": "蓄电池",
+      "page_title": "蓄电池（特性）",
+      "page_id": 98234,
+      "revision_id": 2308431,
+      "revision_timestamp": "2024-02-01T14:32:47Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 218,
+      "identifier": "fluffy",
+      "wiki_number": 218,
+      "name_zh": "毛茸茸",
+      "page_title": "毛茸茸（特性）",
+      "page_id": 98825,
+      "revision_id": 2616675,
+      "revision_timestamp": "2026-09-01T02:12:31Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 219,
+      "identifier": "dazzling",
+      "wiki_number": 219,
+      "name_zh": "鲜艳之躯",
+      "page_title": "鲜艳之躯（特性）",
+      "page_id": 98261,
+      "revision_id": 2554616,
+      "revision_timestamp": "2026-03-19T08:15:21Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 220,
+      "identifier": "soul-heart",
+      "wiki_number": 220,
+      "name_zh": "魂心",
+      "page_title": "魂心（特性）",
+      "page_id": 97576,
+      "revision_id": 2618533,
+      "revision_timestamp": "2026-09-09T13:09:59Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 221,
+      "identifier": "tangling-hair",
+      "wiki_number": 221,
+      "name_zh": "卷发",
+      "page_title": "卷发（特性）",
+      "page_id": 108339,
+      "revision_id": 2595457,
+      "revision_timestamp": "2026-06-18T07:08:14Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 222,
+      "identifier": "receiver",
+      "wiki_number": 222,
+      "name_zh": "接球手",
+      "page_title": "接球手（特性）",
+      "page_id": 101469,
+      "revision_id": 2561930,
+      "revision_timestamp": "2026-04-08T09:35:32Z",
+      "explicit_fields": [
+        "Change",
+        "Trace"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 223,
+      "identifier": "power-of-alchemy",
+      "wiki_number": 223,
+      "name_zh": "化学之力",
+      "page_title": "化学之力（特性）",
+      "page_id": 108704,
+      "revision_id": 2554618,
+      "revision_timestamp": "2026-03-19T08:15:30Z",
+      "explicit_fields": [
+        "Trace"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 224,
+      "identifier": "beast-boost",
+      "wiki_number": 224,
+      "name_zh": "异兽提升",
+      "page_title": "异兽提升（特性）",
+      "page_id": 108761,
+      "revision_id": 2595116,
+      "revision_timestamp": "2026-06-17T11:24:05Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 225,
+      "identifier": "rks-system",
+      "wiki_number": 225,
+      "name_zh": "ＡＲ系统",
+      "page_title": "ＡＲ系统（特性）",
+      "page_id": 102531,
+      "revision_id": 2554619,
+      "revision_timestamp": "2026-03-19T08:15:34Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 226,
+      "identifier": "electric-surge",
+      "wiki_number": 226,
+      "name_zh": "电气制造者",
+      "page_title": "电气制造者（特性）",
+      "page_id": 98230,
+      "revision_id": 2595458,
+      "revision_timestamp": "2026-06-18T07:08:28Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 227,
+      "identifier": "psychic-surge",
+      "wiki_number": 227,
+      "name_zh": "精神制造者",
+      "page_title": "精神制造者（特性）",
+      "page_id": 103367,
+      "revision_id": 2618399,
+      "revision_timestamp": "2026-09-09T08:33:22Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 228,
+      "identifier": "misty-surge",
+      "wiki_number": 228,
+      "name_zh": "薄雾制造者",
+      "page_title": "薄雾制造者（特性）",
+      "page_id": 103404,
+      "revision_id": 2407392,
+      "revision_timestamp": "2025-03-29T19:34:01Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 229,
+      "identifier": "grassy-surge",
+      "wiki_number": 229,
+      "name_zh": "青草制造者",
+      "page_title": "青草制造者（特性）",
+      "page_id": 103379,
+      "revision_id": 2618400,
+      "revision_timestamp": "2026-09-09T08:33:24Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 230,
+      "identifier": "full-metal-body",
+      "wiki_number": 230,
+      "name_zh": "金屬防護",
+      "page_title": "金属防护（特性）",
+      "page_id": 97369,
+      "revision_id": 2554620,
+      "revision_timestamp": "2026-03-19T08:15:38Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 231,
+      "identifier": "shadow-shield",
+      "wiki_number": 231,
+      "name_zh": "幻影防守",
+      "page_title": "幻影防守（特性）",
+      "page_id": 97371,
+      "revision_id": 2554621,
+      "revision_timestamp": "2026-03-19T08:15:42Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 232,
+      "identifier": "prism-armor",
+      "wiki_number": 232,
+      "name_zh": "棱镜装甲",
+      "page_title": "棱镜装甲（特性）",
+      "page_id": 109597,
+      "revision_id": 2554545,
+      "revision_timestamp": "2026-03-19T08:09:37Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 233,
+      "identifier": "neuroforce",
+      "wiki_number": 233,
+      "name_zh": "脑核之力",
+      "page_title": "脑核之力（特性）",
+      "page_id": 125885,
+      "revision_id": 2554546,
+      "revision_timestamp": "2026-03-19T08:09:46Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 234,
+      "identifier": "intrepid-sword",
+      "wiki_number": 234,
+      "name_zh": "不挠之剑",
+      "page_title": "不挠之剑（特性）",
+      "page_id": 160344,
+      "revision_id": 2576517,
+      "revision_timestamp": "2026-05-09T15:27:58Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 235,
+      "identifier": "dauntless-shield",
+      "wiki_number": 235,
+      "name_zh": "不屈之盾",
+      "page_title": "不屈之盾（特性）",
+      "page_id": 160345,
+      "revision_id": 2576518,
+      "revision_timestamp": "2026-05-09T15:28:02Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 236,
+      "identifier": "libero",
+      "wiki_number": 236,
+      "name_zh": "自由者",
+      "page_title": "自由者（特性）",
+      "page_id": 159177,
+      "revision_id": 2618401,
+      "revision_timestamp": "2026-09-09T08:33:26Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 237,
+      "identifier": "ball-fetch",
+      "wiki_number": 237,
+      "name_zh": "捡球",
+      "page_title": "捡球（特性）",
+      "page_id": 150719,
+      "revision_id": 2554549,
+      "revision_timestamp": "2026-03-19T08:10:01Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 238,
+      "identifier": "cotton-down",
+      "wiki_number": 238,
+      "name_zh": "棉絮",
+      "page_title": "棉絮（特性）",
+      "page_id": 150259,
+      "revision_id": 2308452,
+      "revision_timestamp": "2024-02-01T14:33:37Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 239,
+      "identifier": "propeller-tail",
+      "wiki_number": 239,
+      "name_zh": "螺旋尾鰭",
+      "page_title": "螺旋尾鳍（特性）",
+      "page_id": 160863,
+      "revision_id": 2554550,
+      "revision_timestamp": "2026-03-19T08:10:06Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 240,
+      "identifier": "mirror-armor",
+      "wiki_number": 240,
+      "name_zh": "镜甲",
+      "page_title": "镜甲（特性）",
+      "page_id": 153450,
+      "revision_id": 2561931,
+      "revision_timestamp": "2026-04-08T09:35:34Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 241,
+      "identifier": "gulp-missile",
+      "wiki_number": 241,
+      "name_zh": "一口导弹",
+      "page_title": "一口导弹（特性）",
+      "page_id": 154440,
+      "revision_id": 2507974,
+      "revision_timestamp": "2025-12-12T15:06:26Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "no",
+        "copyable": "yes",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 242,
+      "identifier": "stalwart",
+      "wiki_number": 242,
+      "name_zh": "坚毅",
+      "page_title": "坚毅（特性）",
+      "page_id": 160690,
+      "revision_id": 2561932,
+      "revision_timestamp": "2026-04-08T09:35:36Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 243,
+      "identifier": "steam-engine",
+      "wiki_number": 243,
+      "name_zh": "蒸汽機",
+      "page_title": "蒸汽机（特性）",
+      "page_id": 150756,
+      "revision_id": 2493520,
+      "revision_timestamp": "2025-11-15T07:33:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 244,
+      "identifier": "punk-rock",
+      "wiki_number": 244,
+      "name_zh": "庞克摇滚",
+      "page_title": "庞克摇滚（特性）",
+      "page_id": 159398,
+      "revision_id": 2618402,
+      "revision_timestamp": "2026-09-09T08:33:28Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 245,
+      "identifier": "sand-spit",
+      "wiki_number": 245,
+      "name_zh": "吐沙",
+      "page_title": "吐沙（特性）",
+      "page_id": 160866,
+      "revision_id": 2561933,
+      "revision_timestamp": "2026-04-08T09:35:38Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 246,
+      "identifier": "ice-scales",
+      "wiki_number": 246,
+      "name_zh": "冰鳞粉",
+      "page_title": "冰鳞粉（特性）",
+      "page_id": 159162,
+      "revision_id": 2617123,
+      "revision_timestamp": "2026-09-02T17:46:20Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 247,
+      "identifier": "ripen",
+      "wiki_number": 247,
+      "name_zh": "熟成",
+      "page_title": "熟成（特性）",
+      "page_id": 160869,
+      "revision_id": 2561934,
+      "revision_timestamp": "2026-04-08T09:35:42Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 248,
+      "identifier": "ice-face",
+      "wiki_number": 248,
+      "name_zh": "结冻头",
+      "page_title": "结冻头（特性）",
+      "page_id": 158059,
+      "revision_id": 2554554,
+      "revision_timestamp": "2026-03-19T08:10:28Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 249,
+      "identifier": "power-spot",
+      "wiki_number": 249,
+      "name_zh": "能量點",
+      "page_title": "能量点（特性）",
+      "page_id": 160870,
+      "revision_id": 2554555,
+      "revision_timestamp": "2026-03-19T08:10:32Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 250,
+      "identifier": "mimicry",
+      "wiki_number": 250,
+      "name_zh": "擬態",
+      "page_title": "拟态（特性）",
+      "page_id": 160871,
+      "revision_id": 2561935,
+      "revision_timestamp": "2026-04-08T09:35:44Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 251,
+      "identifier": "screen-cleaner",
+      "wiki_number": 251,
+      "name_zh": "除障",
+      "page_title": "除障（特性）",
+      "page_id": 160872,
+      "revision_id": 2561936,
+      "revision_timestamp": "2026-04-08T09:35:46Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 252,
+      "identifier": "steely-spirit",
+      "wiki_number": 252,
+      "name_zh": "鋼之意志",
+      "page_title": "钢之意志（特性）",
+      "page_id": 160875,
+      "revision_id": 2618403,
+      "revision_timestamp": "2026-09-09T08:33:30Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 253,
+      "identifier": "perish-body",
+      "wiki_number": 253,
+      "name_zh": "滅亡之軀",
+      "page_title": "灭亡之躯（特性）",
+      "page_id": 160877,
+      "revision_id": 2554557,
+      "revision_timestamp": "2026-03-19T08:10:39Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 254,
+      "identifier": "wandering-spirit",
+      "wiki_number": 254,
+      "name_zh": "游魂",
+      "page_title": "游魂（特性）",
+      "page_id": 159159,
+      "revision_id": 2561937,
+      "revision_timestamp": "2026-04-08T09:35:48Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 255,
+      "identifier": "gorilla-tactics",
+      "wiki_number": 255,
+      "name_zh": "一猩一意",
+      "page_title": "一猩一意（特性）",
+      "page_id": 159400,
+      "revision_id": 2554559,
+      "revision_timestamp": "2026-03-19T08:10:46Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 256,
+      "identifier": "neutralizing-gas",
+      "wiki_number": 256,
+      "name_zh": "化学变化气体",
+      "page_title": "化学变化气体（特性）",
+      "page_id": 153446,
+      "revision_id": 2554560,
+      "revision_timestamp": "2026-03-19T08:10:49Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Trace",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 257,
+      "identifier": "pastel-veil",
+      "wiki_number": 257,
+      "name_zh": "粉彩护幕",
+      "page_title": "粉彩护幕（特性）",
+      "page_id": 155272,
+      "revision_id": 2554561,
+      "revision_timestamp": "2026-03-19T08:10:54Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 258,
+      "identifier": "hunger-switch",
+      "wiki_number": 258,
+      "name_zh": "飽了又餓",
+      "page_title": "饱了又饿（特性）",
+      "page_id": 152661,
+      "revision_id": 2561938,
+      "revision_timestamp": "2026-04-08T09:35:50Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Trace",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 259,
+      "identifier": "quick-draw",
+      "wiki_number": 259,
+      "name_zh": "速击",
+      "page_title": "速击（特性）",
+      "page_id": 181499,
+      "revision_id": 2561939,
+      "revision_timestamp": "2026-04-08T09:35:53Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 260,
+      "identifier": "unseen-fist",
+      "wiki_number": 260,
+      "name_zh": "无形拳",
+      "page_title": "无形拳（特性）",
+      "page_id": 165501,
+      "revision_id": 2564774,
+      "revision_timestamp": "2026-04-13T10:21:51Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 261,
+      "identifier": "curious-medicine",
+      "wiki_number": 261,
+      "name_zh": "怪药",
+      "page_title": "怪药（特性）",
+      "page_id": 187968,
+      "revision_id": 2561941,
+      "revision_timestamp": "2026-04-08T09:35:57Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 262,
+      "identifier": "transistor",
+      "wiki_number": 262,
+      "name_zh": "电晶体",
+      "page_title": "电晶体（特性）",
+      "page_id": 181495,
+      "revision_id": 2308467,
+      "revision_timestamp": "2024-02-01T14:34:31Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 263,
+      "identifier": "dragons-maw",
+      "wiki_number": 263,
+      "name_zh": "龙颚",
+      "page_title": "龙颚（特性）",
+      "page_id": 181496,
+      "revision_id": 2554565,
+      "revision_timestamp": "2026-03-19T08:11:14Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 264,
+      "identifier": "chilling-neigh",
+      "wiki_number": 264,
+      "name_zh": "苍白嘶鸣",
+      "page_title": "苍白嘶鸣（特性）",
+      "page_id": 189087,
+      "revision_id": 2594939,
+      "revision_timestamp": "2026-06-17T05:30:45Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 265,
+      "identifier": "grim-neigh",
+      "wiki_number": 265,
+      "name_zh": "漆黑嘶鸣",
+      "page_title": "漆黑嘶鸣（特性）",
+      "page_id": 189088,
+      "revision_id": 2594940,
+      "revision_timestamp": "2026-06-17T05:31:05Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 266,
+      "identifier": "as-one-glastrier",
+      "wiki_number": 266,
+      "name_zh": "人马一体",
+      "page_title": "人马一体（特性）",
+      "page_id": 189075,
+      "revision_id": 2594941,
+      "revision_timestamp": "2026-06-17T05:31:54Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 267,
+      "identifier": "as-one-spectrier",
+      "wiki_number": 266,
+      "name_zh": "人马一体",
+      "page_title": "人马一体（特性）",
+      "page_id": 189075,
+      "revision_id": 2594941,
+      "revision_timestamp": "2026-06-17T05:31:54Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 268,
+      "identifier": "lingering-aroma",
+      "wiki_number": 268,
+      "name_zh": "甩不掉的气味",
+      "page_title": "甩不掉的气味（特性）",
+      "page_id": 234488,
+      "revision_id": 2608851,
+      "revision_timestamp": "2026-07-28T15:11:16Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 269,
+      "identifier": "seed-sower",
+      "wiki_number": 269,
+      "name_zh": "掉出种子",
+      "page_title": "掉出种子（特性）",
+      "page_id": 234489,
+      "revision_id": 2618404,
+      "revision_timestamp": "2026-09-09T08:33:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 270,
+      "identifier": "thermal-exchange",
+      "wiki_number": 270,
+      "name_zh": "热交换",
+      "page_title": "热交换（特性）",
+      "page_id": 234490,
+      "revision_id": 2618405,
+      "revision_timestamp": "2026-09-09T08:33:35Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 271,
+      "identifier": "anger-shell",
+      "wiki_number": 271,
+      "name_zh": "愤怒甲壳",
+      "page_title": "愤怒甲壳（特性）",
+      "page_id": 228773,
+      "revision_id": 2608854,
+      "revision_timestamp": "2026-07-28T15:12:56Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 272,
+      "identifier": "purifying-salt",
+      "wiki_number": 272,
+      "name_zh": "洁净之盐",
+      "page_title": "洁净之盐（特性）",
+      "page_id": 234491,
+      "revision_id": 2608855,
+      "revision_timestamp": "2026-07-28T15:13:22Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 273,
+      "identifier": "well-baked-body",
+      "wiki_number": 273,
+      "name_zh": "焦香之躯",
+      "page_title": "焦香之躯（特性）",
+      "page_id": 234492,
+      "revision_id": 2608856,
+      "revision_timestamp": "2026-07-28T15:13:58Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 274,
+      "identifier": "wind-rider",
+      "wiki_number": 274,
+      "name_zh": "乘风",
+      "page_title": "乘风（特性）",
+      "page_id": 234493,
+      "revision_id": 2608857,
+      "revision_timestamp": "2026-07-28T15:14:16Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 275,
+      "identifier": "guard-dog",
+      "wiki_number": 275,
+      "name_zh": "看门犬",
+      "page_title": "看门犬（特性）",
+      "page_id": 234494,
+      "revision_id": 2618406,
+      "revision_timestamp": "2026-09-09T08:33:37Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 276,
+      "identifier": "rocky-payload",
+      "wiki_number": 276,
+      "name_zh": "搬岩",
+      "page_title": "搬岩（特性）",
+      "page_id": 234495,
+      "revision_id": 2608859,
+      "revision_timestamp": "2026-07-28T15:15:07Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 277,
+      "identifier": "wind-power",
+      "wiki_number": 277,
+      "name_zh": "风力发电",
+      "page_title": "风力发电（特性）",
+      "page_id": 234496,
+      "revision_id": 2608860,
+      "revision_timestamp": "2026-07-28T15:15:25Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 278,
+      "identifier": "zero-to-hero",
+      "wiki_number": 278,
+      "name_zh": "全能变身",
+      "page_title": "全能变身（特性）",
+      "page_id": 234497,
+      "revision_id": 2608861,
+      "revision_timestamp": "2026-07-28T15:15:45Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 279,
+      "identifier": "commander",
+      "wiki_number": 279,
+      "name_zh": "发号施令",
+      "page_title": "发号施令（特性）",
+      "page_id": 234498,
+      "revision_id": 2608862,
+      "revision_timestamp": "2026-07-28T15:16:08Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 280,
+      "identifier": "electromorphosis",
+      "wiki_number": 280,
+      "name_zh": "电力转换",
+      "page_title": "电力转换（特性）",
+      "page_id": 231275,
+      "revision_id": 2608863,
+      "revision_timestamp": "2026-07-28T15:16:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 281,
+      "identifier": "protosynthesis",
+      "wiki_number": 281,
+      "name_zh": "古代活性",
+      "page_title": "古代活性（特性）",
+      "page_id": 234499,
+      "revision_id": 2608864,
+      "revision_timestamp": "2026-07-28T15:17:01Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 282,
+      "identifier": "quark-drive",
+      "wiki_number": 282,
+      "name_zh": "夸克充能",
+      "page_title": "夸克充能（特性）",
+      "page_id": 234500,
+      "revision_id": 2608865,
+      "revision_timestamp": "2026-07-28T15:17:31Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 283,
+      "identifier": "good-as-gold",
+      "wiki_number": 283,
+      "name_zh": "黄金之躯",
+      "page_title": "黄金之躯（特性）",
+      "page_id": 234501,
+      "revision_id": 2608866,
+      "revision_timestamp": "2026-07-28T15:18:00Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 284,
+      "identifier": "vessel-of-ruin",
+      "wiki_number": 284,
+      "name_zh": "灾祸之鼎",
+      "page_title": "灾祸之鼎（特性）",
+      "page_id": 234502,
+      "revision_id": 2608867,
+      "revision_timestamp": "2026-07-28T15:18:20Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 285,
+      "identifier": "sword-of-ruin",
+      "wiki_number": 285,
+      "name_zh": "灾祸之剑",
+      "page_title": "灾祸之剑（特性）",
+      "page_id": 234503,
+      "revision_id": 2608868,
+      "revision_timestamp": "2026-07-28T15:18:40Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 286,
+      "identifier": "tablets-of-ruin",
+      "wiki_number": 286,
+      "name_zh": "灾祸之简",
+      "page_title": "灾祸之简（特性）",
+      "page_id": 234504,
+      "revision_id": 2608869,
+      "revision_timestamp": "2026-07-28T15:19:01Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 287,
+      "identifier": "beads-of-ruin",
+      "wiki_number": 287,
+      "name_zh": "灾祸之玉",
+      "page_title": "灾祸之玉（特性）",
+      "page_id": 234505,
+      "revision_id": 2608870,
+      "revision_timestamp": "2026-07-28T15:19:20Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 288,
+      "identifier": "orichalcum-pulse",
+      "wiki_number": 288,
+      "name_zh": "绯红脉动",
+      "page_title": "绯红脉动（特性）",
+      "page_id": 234506,
+      "revision_id": 2608871,
+      "revision_timestamp": "2026-07-28T15:19:37Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 289,
+      "identifier": "hadron-engine",
+      "wiki_number": 289,
+      "name_zh": "强子引擎",
+      "page_title": "强子引擎（特性）",
+      "page_id": 234507,
+      "revision_id": 2608872,
+      "revision_timestamp": "2026-07-28T15:20:02Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 290,
+      "identifier": "opportunist",
+      "wiki_number": 290,
+      "name_zh": "跟风",
+      "page_title": "跟风（特性）",
+      "page_id": 234508,
+      "revision_id": 2608873,
+      "revision_timestamp": "2026-07-28T15:20:28Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 291,
+      "identifier": "cud-chew",
+      "wiki_number": 291,
+      "name_zh": "反刍",
+      "page_title": "反刍（特性）",
+      "page_id": 230856,
+      "revision_id": 2608874,
+      "revision_timestamp": "2026-07-28T15:20:47Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 292,
+      "identifier": "sharpness",
+      "wiki_number": 292,
+      "name_zh": "锋锐",
+      "page_title": "锋锐（特性）",
+      "page_id": 234509,
+      "revision_id": 2617712,
+      "revision_timestamp": "2026-09-05T08:17:02Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 293,
+      "identifier": "supreme-overlord",
+      "wiki_number": 293,
+      "name_zh": "大将",
+      "page_title": "大将（特性）",
+      "page_id": 234510,
+      "revision_id": 2608876,
+      "revision_timestamp": "2026-07-28T15:21:52Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 294,
+      "identifier": "costar",
+      "wiki_number": 294,
+      "name_zh": "同台共演",
+      "page_title": "同台共演（特性）",
+      "page_id": 234511,
+      "revision_id": 2608614,
+      "revision_timestamp": "2026-07-27T09:38:32Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 295,
+      "identifier": "toxic-debris",
+      "wiki_number": 295,
+      "name_zh": "毒满地",
+      "page_title": "毒满地（特性）",
+      "page_id": 234512,
+      "revision_id": 2608877,
+      "revision_timestamp": "2026-07-28T15:22:13Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 296,
+      "identifier": "armor-tail",
+      "wiki_number": 296,
+      "name_zh": "尾甲",
+      "page_title": "尾甲（特性）",
+      "page_id": 230906,
+      "revision_id": 2608878,
+      "revision_timestamp": "2026-07-28T15:22:33Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 297,
+      "identifier": "earth-eater",
+      "wiki_number": 297,
+      "name_zh": "食土",
+      "page_title": "食土（特性）",
+      "page_id": 234513,
+      "revision_id": 2608879,
+      "revision_timestamp": "2026-07-28T15:22:52Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 298,
+      "identifier": "mycelium-might",
+      "wiki_number": 298,
+      "name_zh": "菌丝之力",
+      "page_title": "菌丝之力（特性）",
+      "page_id": 234514,
+      "revision_id": 2608880,
+      "revision_timestamp": "2026-07-28T15:23:19Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 299,
+      "identifier": "minds-eye",
+      "wiki_number": 300,
+      "name_zh": "心眼",
+      "page_title": "心眼（特性）",
+      "page_id": 254013,
+      "revision_id": 2608882,
+      "revision_timestamp": "2026-07-28T15:23:57Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 300,
+      "identifier": "supersweet-syrup",
+      "wiki_number": 306,
+      "name_zh": "甘露之蜜",
+      "page_title": "甘露之蜜（特性）",
+      "page_id": 252137,
+      "revision_id": 2576515,
+      "revision_timestamp": "2026-05-09T15:27:34Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 301,
+      "identifier": "hospitality",
+      "wiki_number": 299,
+      "name_zh": "款待",
+      "page_title": "款待（特性）",
+      "page_id": 252629,
+      "revision_id": 2608881,
+      "revision_timestamp": "2026-07-28T15:23:37Z",
+      "explicit_fields": [
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 302,
+      "identifier": "toxic-chain",
+      "wiki_number": 305,
+      "name_zh": "毒锁链",
+      "page_title": "毒锁链（特性）",
+      "page_id": 248976,
+      "revision_id": 2608883,
+      "revision_timestamp": "2026-07-28T15:24:28Z",
+      "explicit_fields": [],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 303,
+      "identifier": "embody-aspect",
+      "wiki_number": 301,
+      "name_zh": "面影辉映",
+      "page_title": "面影辉映（特性）",
+      "page_id": 254014,
+      "revision_id": 2309398,
+      "revision_timestamp": "2024-02-06T01:03:34Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 304,
+      "identifier": "tera-shift",
+      "wiki_number": 308,
+      "name_zh": "太晶变形",
+      "page_title": "太晶变形（特性）",
+      "page_id": 258329,
+      "revision_id": 2608884,
+      "revision_timestamp": "2026-07-28T15:24:56Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "no",
+        "copyable": "no",
+        "suppression": "no",
+        "transform": "no",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 305,
+      "identifier": "tera-shell",
+      "wiki_number": 309,
+      "name_zh": "太晶甲壳",
+      "page_title": "太晶甲壳（特性）",
+      "page_id": 258332,
+      "revision_id": 2608885,
+      "revision_timestamp": "2026-07-28T15:25:15Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 306,
+      "identifier": "teraform-zero",
+      "wiki_number": 310,
+      "name_zh": "归零化境",
+      "page_title": "归零化境（特性）",
+      "page_id": 258333,
+      "revision_id": 2608886,
+      "revision_timestamp": "2026-07-28T15:26:02Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Entry"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "yes"
+      }
+    },
+    {
+      "ability_id": 307,
+      "identifier": "poison-puppeteer",
+      "wiki_number": 311,
+      "name_zh": "毒傀儡",
+      "page_title": "毒傀儡（特性）",
+      "page_id": 258334,
+      "revision_id": 2608887,
+      "revision_timestamp": "2026-07-28T15:26:18Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "no",
+        "ability-change": "yes",
+        "copyable": "no",
+        "suppression": "yes",
+        "transform": "no",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 308,
+      "identifier": "piercing-drill",
+      "wiki_number": 311,
+      "name_zh": "贯穿钻",
+      "page_title": "贯穿钻（特性）",
+      "page_id": 323746,
+      "revision_id": 2610009,
+      "revision_timestamp": "2026-08-03T22:20:27Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 309,
+      "identifier": "dragonize",
+      "wiki_number": 312,
+      "name_zh": "龙皮肤",
+      "page_title": "龙皮肤（特性）",
+      "page_id": 322895,
+      "revision_id": 2617337,
+      "revision_timestamp": "2026-09-03T15:40:12Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 310,
+      "identifier": "mega-sol",
+      "wiki_number": 315,
+      "name_zh": "超级日光",
+      "page_title": "超级日光（特性）",
+      "page_id": 322894,
+      "revision_id": 2616509,
+      "revision_timestamp": "2026-08-31T06:53:02Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    },
+    {
+      "ability_id": 311,
+      "identifier": "spicy-spray",
+      "wiki_number": 318,
+      "name_zh": "辣椒喷发",
+      "page_title": "辣椒喷发（特性）",
+      "page_id": 323747,
+      "revision_id": 2613763,
+      "revision_timestamp": "2026-08-18T19:43:41Z",
+      "explicit_fields": [
+        "Skillswap",
+        "Change",
+        "Trace",
+        "Noability",
+        "Transform"
+      ],
+      "states": {
+        "skill-swap": "yes",
+        "ability-change": "yes",
+        "copyable": "yes",
+        "suppression": "yes",
+        "transform": "yes",
+        "entry": "no"
+      }
+    }
+  ]
+}

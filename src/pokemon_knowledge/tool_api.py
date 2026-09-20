@@ -11,7 +11,7 @@ from .query import KnowledgeService
 TOOL_DEFINITIONS: list[dict[str, Any]] = [
     {
         "name": "lookup_entity",
-        "description": "查询一个宝可梦、招式、特性或道具的结构化详情。招式详情中 mechanic_categories_complete 为 true 时，mechanic_categories 是当前主系列规则下的完整正向分类集合，集合中不存在某分类即表示该招式不属于该分类；为 false 时不得从缺席推断否定。",
+        "description": "查询一个宝可梦、招式、特性或道具的结构化详情。招式详情通过 mechanic_categories 返回当前主系列机制分类；特性详情通过 mechanic_properties 返回交换、复制、压制、变身、破格、入场触发等显式 yes/no 状态，pilot_species 会列出包括 Mega 在内的持有形态并提供 display_name。只有相应 complete 字段为 true 时才可据此下结论。",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -24,7 +24,7 @@ TOOL_DEFINITIONS: list[dict[str, Any]] = [
     },
     {
         "name": "filter_species",
-        "description": "按基础形态种族值、世代、属性、特性、标签或传说分类筛选宝可梦。",
+        "description": "按形态的种族值、世代、属性、特性、标签或传说分类筛选宝可梦。form_scope 未传时为 all，包含 Mega 等非默认形态；只有用户明确要求基础/默认形态时才传 default，只要求 Mega 时传 mega。每个结果用 display_name 展示中文形态名。使用 ability_identifiers 时，matched_abilities 会明确返回命中特性的 slot 与 is_hidden；普通/隐藏特性判断必须以这些字段为准。",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -44,6 +44,7 @@ TOOL_DEFINITIONS: list[dict[str, Any]] = [
                 "type_identifiers": {"type": "array", "items": {"type": "string"}},
                 "ability_identifiers": {"type": "array", "items": {"type": "string"}},
                 "tag_keys": {"type": "array", "items": {"type": "string"}},
+                "form_scope": {"enum": ["all", "default", "mega"]},
                 "ordinary_only": {"type": "boolean"},
                 "sort_by": {"type": "string"},
                 "descending": {"type": "boolean"},
@@ -121,7 +122,7 @@ TOOL_DEFINITIONS: list[dict[str, Any]] = [
     },
     {
         "name": "get_entity_tags",
-        "description": "列出实体的实用分类标签及每个标签的结构化生成证据；招式包含接触、切割、风、球和弹等当前机制分类。",
+        "description": "列出实体的实用分类标签及每个标签的结构化生成证据；招式包含接触、切割、风、球和弹等分类，特性包含交换、扮演、复制、继承、找伙伴、压制、变身、破格和入场触发的正反标签。",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -134,7 +135,7 @@ TOOL_DEFINITIONS: list[dict[str, Any]] = [
     },
     {
         "name": "search_by_tags",
-        "description": "按一个或多个标签查找宝可梦、招式、特性或道具，可组合检索接触、切割、风、球和弹等招式机制分类。",
+        "description": "按一个或多个标签查找宝可梦、招式、特性或道具，可组合检索招式机制分类，以及特性机制的正向或反向状态。",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -144,6 +145,36 @@ TOOL_DEFINITIONS: list[dict[str, Any]] = [
                 "limit": {"type": "integer", "minimum": 1, "maximum": 1000},
             },
             "required": ["tag_queries"],
+            "additionalProperties": False,
+        },
+    },
+    {
+        "name": "lookup_battle_state",
+        "description": "查询一个具体战斗状态的分类、作用范围、当前规则、持续时间/倍率等结构化参数、应对方式，以及设置或清除它的招式/特性。注意场地状态是广义概念：光墙、白雾属于队伍侧状态 side_condition，不属于四种 terrain。",
+        "input_schema": {
+            "type": "object",
+            "properties": {"query": {"type": "string"}},
+            "required": ["query"],
+            "additionalProperties": False,
+        },
+    },
+    {
+        "name": "list_battle_states",
+        "description": "按类别或作用范围列出战斗状态，也可查询与某个招式/特性关联的状态。类别包括宝可梦自身状态、队伍侧场地状态、天气、四种场地、全场规则状态和气场。用户泛指场地状态时不要只查 terrain。",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": ["string", "null"],
+                    "enum": ["pokemon_status", "side_condition", "weather", "terrain", "field_condition", "aura", None],
+                },
+                "scope": {
+                    "type": ["string", "null"],
+                    "enum": ["pokemon", "side", "field", None],
+                },
+                "current_only": {"type": "boolean"},
+                "related_entity_query": {"type": ["string", "null"]},
+            },
             "additionalProperties": False,
         },
     },
@@ -179,6 +210,8 @@ class KnowledgeTools:
             "can_species_learn_move": lambda args: self.service.can_learn(**args),
             "get_entity_tags": lambda args: self.service.get_entity_tags(**args),
             "search_by_tags": lambda args: self.service.search_by_tags(**args),
+            "lookup_battle_state": lambda args: self.service.battle_state_summary(**args),
+            "list_battle_states": lambda args: self.service.list_battle_states(**args),
             "search_knowledge": self._search_knowledge,
         }
         try:

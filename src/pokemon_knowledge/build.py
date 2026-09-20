@@ -23,7 +23,11 @@ ZH_REPOSITORY_URL = "https://github.com/42arch/pokemon-dataset-zh"
 ZH_DATA_FILES = ("ability_list.json", "move_list.json", "item_list.json")
 SHOWDOWN_SOURCE_ID = "pokemon-showdown"
 SHOWDOWN_REPOSITORY_URL = "https://github.com/smogon/pokemon-showdown"
-SHOWDOWN_DATA_FILES = ("moves.ts", "dex-moves.ts", "LICENSE")
+WIKI_ABILITY_SOURCE_ID = "pokemon-encyclopedia-ability-infobox"
+WIKI_ABILITY_SOURCE_URL = "https://wiki.52poke.com"
+SHOWDOWN_DATA_FILES = (
+    "moves.ts", "dex-moves.ts", "abilities.ts", "dex-abilities.ts", "conditions.ts", "LICENSE"
+)
 
 USED_CSV_FILES = (
     "abilities.csv",
@@ -130,6 +134,39 @@ def _parse_showdown_move_flags(path: Path) -> dict[int, set[str]]:
     return result
 
 
+def _parse_showdown_ability_signals(path: Path) -> dict[str, set[str]]:
+    """Extract numbered abilities, rule flags, and top-level onStart handlers.
+
+    The result is deliberately limited to declarative metadata used by the
+    current battle engine.  TypeScript is parsed as text and is never executed.
+    """
+    text = path.read_text(encoding="utf-8")
+    block_pattern = re.compile(
+        r"(?ms)^\t(?P<identifier>[A-Za-z0-9]+|\"[^\"]+\"): "
+        r"\{\r?\n(?P<body>.*?)(?=^\t\},?\r?$)"
+    )
+    result: dict[str, set[str]] = {}
+    for match in block_pattern.finditer(text):
+        identifier = match.group("identifier").strip('"')
+        block = match.group("body")
+        number_match = re.search(r"(?m)^\t\tnum: (-?\d+),\s*$", block)
+        if number_match is None:
+            continue
+        if int(number_match.group(1)) <= 0:
+            continue
+        signals: set[str] = set()
+        flags_match = re.search(r"(?s)(?:^|\n)\t\tflags:\s*\{(.*?)\},", block)
+        if flags_match:
+            signals.update(
+                f"flag:{match.group(1)}"
+                for match in re.finditer(r"([A-Za-z0-9]+): 1", flags_match.group(1))
+            )
+        if re.search(r"(?m)^\t\tonStart\(", block):
+            signals.add("event:onStart")
+        result[identifier] = signals
+    return result
+
+
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -181,10 +218,26 @@ def _build_manifest(settings: Settings, pilot_ids: set[int]) -> tuple[dict[str, 
         raise FileNotFoundError(
             f"Move mechanism category mapping is missing: {settings.move_mechanic_categories_path}"
         )
+    if not settings.ability_mechanic_categories_path.exists():
+        raise FileNotFoundError(
+            f"Ability mechanism category mapping is missing: "
+            f"{settings.ability_mechanic_categories_path}"
+        )
+    if not settings.ability_infobox_path.exists():
+        raise FileNotFoundError(
+            f"Ability infobox snapshot is missing: {settings.ability_infobox_path}"
+        )
+    if not settings.battle_states_path.exists():
+        raise FileNotFoundError(
+            f"Battle-state mapping is missing: {settings.battle_states_path}"
+        )
     showdown_commit = json.loads(showdown_commit_path.read_text(encoding="utf-8"))
+    ability_infobox = json.loads(settings.ability_infobox_path.read_text(encoding="utf-8"))
+    if ability_infobox.get("source_id") != WIKI_ABILITY_SOURCE_ID:
+        raise ValueError("Ability infobox snapshot has an unexpected source_id")
 
     manifest: dict[str, object] = {
-        "schema_version": 10,
+        "schema_version": 12,
         "source_id": SOURCE_ID,
         "repository_url": REPOSITORY_URL,
         "upstream_commit": _git_value(repo, "rev-parse", "HEAD"),
@@ -206,6 +259,18 @@ def _build_manifest(settings: Settings, pilot_ids: set[int]) -> tuple[dict[str, 
                 "bytes": settings.move_mechanic_categories_path.stat().st_size,
                 "sha256": _sha256(settings.move_mechanic_categories_path),
             },
+            "ability_mechanic_categories.json": {
+                "bytes": settings.ability_mechanic_categories_path.stat().st_size,
+                "sha256": _sha256(settings.ability_mechanic_categories_path),
+            },
+            "ability_infobox_mainline.json": {
+                "bytes": settings.ability_infobox_path.stat().st_size,
+                "sha256": _sha256(settings.ability_infobox_path),
+            },
+            "battle_states_mainline.json": {
+                "bytes": settings.battle_states_path.stat().st_size,
+                "sha256": _sha256(settings.battle_states_path),
+            },
         },
         "secondary_sources": {
             ZH_SOURCE_ID: {
@@ -226,13 +291,26 @@ def _build_manifest(settings: Settings, pilot_ids: set[int]) -> tuple[dict[str, 
                 "upstream_commit": showdown_commit["sha"],
                 "commit_time": showdown_commit["commit"]["committer"]["date"],
                 "license": "MIT",
-                "role": "current_mainline_move_mechanic_categories",
+                "role": "current_mainline_move_and_ability_mechanic_categories",
                 "files": {
                     filename: {
                         "bytes": (settings.pokemon_showdown_dir / filename).stat().st_size,
                         "sha256": _sha256(settings.pokemon_showdown_dir / filename),
                     }
                     for filename in SHOWDOWN_DATA_FILES
+                },
+            },
+            WIKI_ABILITY_SOURCE_ID: {
+                "repository_url": WIKI_ABILITY_SOURCE_URL,
+                "upstream_commit": ability_infobox["revision_digest"],
+                "commit_time": ability_infobox["latest_revision_timestamp"],
+                "license": ability_infobox["license"],
+                "role": "current_mainline_ability_infobox_properties",
+                "files": {
+                    "ability_infobox_mainline.json": {
+                        "bytes": settings.ability_infobox_path.stat().st_size,
+                        "sha256": _sha256(settings.ability_infobox_path),
+                    }
                 },
             },
         },
@@ -564,6 +642,39 @@ def _build_entity_tags(connection: sqlite3.Connection) -> tuple[int, int]:
             SHOWDOWN_SOURCE_ID,
         )
 
+    for row in connection.execute(
+        """SELECT ams.ability_id, ams.category_identifier, ams.state,
+                  ams.source_signal_present, ams.ruleset_scope,
+                  amc.source_signal, amc.positive_label_zh, amc.negative_label_zh,
+                  amc.description_zh, ams.source_id
+           FROM ability_mechanic_states ams
+           JOIN ability_mechanic_categories amc
+             ON amc.identifier = ams.category_identifier
+           ORDER BY ams.ability_id, ams.category_identifier"""
+    ):
+        state = str(row["state"])
+        label = (
+            str(row["positive_label_zh"])
+            if state == "yes"
+            else str(row["negative_label_zh"])
+        )
+        assign(
+            "ability",
+            int(row["ability_id"]),
+            f"ability:mechanic:{row['category_identifier']}:{state}",
+            "ability_mechanic",
+            label,
+            {
+                "category": row["category_identifier"],
+                "state": state,
+                "source_signal": row["source_signal"],
+                "source_signal_present": bool(row["source_signal_present"]),
+                "ruleset_scope": row["ruleset_scope"],
+            },
+            str(row["description_zh"]),
+            str(row["source_id"]),
+        )
+
     for row in connection.execute("SELECT id, is_main_series FROM abilities"):
         label = "主系列特性" if row["is_main_series"] else "非主系列特性"
         key = "main-series" if row["is_main_series"] else "non-main-series"
@@ -650,6 +761,19 @@ def build_pilot_database(settings: Settings | None = None) -> dict[str, object]:
                 manifest_sha256,
             ),
         )
+        wiki_ability_source = manifest["secondary_sources"][WIKI_ABILITY_SOURCE_ID]
+        connection.execute(
+            "INSERT INTO source_snapshots VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (
+                WIKI_ABILITY_SOURCE_ID,
+                WIKI_ABILITY_SOURCE_URL,
+                wiki_ability_source["upstream_commit"],
+                wiki_ability_source["commit_time"],
+                manifest["fetched_at"],
+                __version__,
+                manifest_sha256,
+            ),
+        )
         connection.executemany(
             "INSERT INTO source_licenses VALUES (?, ?, ?, ?, ?)",
             (
@@ -673,6 +797,13 @@ def build_pilot_database(settings: Settings | None = None) -> dict[str, object]:
                     "Pokémon Showdown © 2011–2026 Guangcong Luo and contributors.",
                     "https://github.com/smogon/pokemon-showdown/blob/master/LICENSE",
                     1,
+                ),
+                (
+                    WIKI_ABILITY_SOURCE_ID,
+                    "CC-BY-NC-SA-3.0",
+                    "特性基本信息字段取自神奇宝贝百科的特性信息框；逐页保留修订号。",
+                    "https://wiki.52poke.com/wiki/神奇宝贝百科:版权声明",
+                    0,
                 ),
             ),
         )
@@ -1263,6 +1394,205 @@ def build_pilot_database(settings: Settings | None = None) -> dict[str, object]:
             "INSERT INTO move_mechanic_memberships VALUES (?, ?, ?, ?, ?)",
             membership_rows,
         )
+        ability_category_payload = json.loads(
+            settings.ability_mechanic_categories_path.read_text(encoding="utf-8")
+        )
+        if int(ability_category_payload.get("schema_version", 0)) != 1:
+            raise ValueError("Unsupported ability mechanism category mapping schema")
+        if ability_category_payload.get("source_id") != SHOWDOWN_SOURCE_ID:
+            raise ValueError("Ability mechanism category mapping has an unexpected source_id")
+        ability_category_by_signal = {
+            str(entry["source_signal"]): entry
+            for entry in ability_category_payload["categories"]
+        }
+        _insert_many(
+            connection,
+            "INSERT INTO ability_mechanic_categories VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (
+                (
+                    str(entry["identifier"]),
+                    str(entry["source_signal"]),
+                    str(entry["positive_label_zh"]),
+                    str(entry["negative_label_zh"]),
+                    str(entry["description_zh"]),
+                    int(bool(entry["positive_when_signal_present"])),
+                    SHOWDOWN_SOURCE_ID,
+                )
+                for entry in ability_category_payload["categories"]
+            ),
+        )
+        showdown_ability_signals = _parse_showdown_ability_signals(
+            settings.pokemon_showdown_dir / "abilities.ts"
+        )
+        observed_ability_signals = (
+            set().union(*showdown_ability_signals.values())
+            if showdown_ability_signals
+            else set()
+        )
+        unclassified_ability_signals = (
+            observed_ability_signals
+            - set(ability_category_by_signal)
+            - set(ability_category_payload.get("excluded_signals", {}))
+        )
+        if unclassified_ability_signals:
+            raise ValueError(
+                "Pokémon Showdown introduced unmapped ability signals: "
+                + ", ".join(sorted(unclassified_ability_signals))
+            )
+        local_main_series_abilities = {
+            normalize_alias(str(row["identifier"])): (int(row["id"]), str(row["identifier"]))
+            for row in connection.execute(
+                "SELECT id, identifier FROM abilities WHERE is_main_series = 1"
+            )
+        }
+        ability_ruleset_scope = str(ability_category_payload["ruleset_scope"])
+        covered_abilities = []
+        for local_key, (ability_id, local_identifier) in sorted(
+            local_main_series_abilities.items()
+        ):
+            matching_identifiers = [
+                identifier
+                for identifier in showdown_ability_signals
+                if normalize_alias(identifier) == local_key
+            ]
+            if not matching_identifiers:
+                matching_identifiers = [
+                    identifier
+                    for identifier in showdown_ability_signals
+                    if normalize_alias(identifier).startswith(local_key)
+                ]
+            if not matching_identifiers:
+                continue
+            signal_sets = {
+                frozenset(showdown_ability_signals[identifier])
+                for identifier in matching_identifiers
+            }
+            if len(signal_sets) != 1:
+                raise ValueError(
+                    f"Showdown ability variants disagree for {local_identifier}: "
+                    + ", ".join(sorted(matching_identifiers))
+                )
+            locator_identifier = (
+                matching_identifiers[0]
+                if len(matching_identifiers) == 1
+                else local_key + "-variants"
+            )
+            covered_abilities.append(
+                (
+                    ability_id,
+                    local_identifier,
+                    locator_identifier,
+                    set(next(iter(signal_sets))),
+                )
+            )
+        ability_coverage_rows = [
+            (
+                ability_id,
+                ability_ruleset_scope,
+                f"data/abilities.ts#ability-{showdown_identifier}",
+                SHOWDOWN_SOURCE_ID,
+            )
+            for ability_id, _, showdown_identifier, _ in covered_abilities
+        ]
+        _insert_many(
+            connection,
+            "INSERT INTO ability_mechanic_coverage VALUES (?, ?, ?, ?)",
+            ability_coverage_rows,
+        )
+        ability_state_rows = []
+        for ability_id, _, showdown_identifier, signals in covered_abilities:
+            for signal, entry in ability_category_by_signal.items():
+                signal_present = signal in signals
+                state_is_positive = (
+                    signal_present == bool(entry["positive_when_signal_present"])
+                )
+                ability_state_rows.append(
+                    (
+                        ability_id,
+                        str(entry["identifier"]),
+                        "yes" if state_is_positive else "no",
+                        int(signal_present),
+                        ability_ruleset_scope,
+                        f"data/abilities.ts#ability-{showdown_identifier}",
+                        SHOWDOWN_SOURCE_ID,
+                    )
+                )
+        _insert_many(
+            connection,
+            "INSERT INTO ability_mechanic_states VALUES (?, ?, ?, ?, ?, ?, ?)",
+            ability_state_rows,
+        )
+        ability_infobox_payload = json.loads(
+            settings.ability_infobox_path.read_text(encoding="utf-8")
+        )
+        if int(ability_infobox_payload.get("schema_version", 0)) != 1:
+            raise ValueError("Unsupported ability infobox snapshot schema")
+        if ability_infobox_payload.get("source_id") != WIKI_ABILITY_SOURCE_ID:
+            raise ValueError("Ability infobox snapshot has an unexpected source_id")
+        wiki_categories = {
+            str(entry["identifier"]): entry
+            for entry in ability_infobox_payload["categories"]
+        }
+        _insert_many(
+            connection,
+            "INSERT INTO ability_mechanic_categories VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (
+                (
+                    str(entry["identifier"]),
+                    f"wiki-infobox:{entry['source_field']}",
+                    str(entry["positive_label_zh"]),
+                    str(entry["negative_label_zh"]),
+                    str(entry["description_zh"]),
+                    1,
+                    WIKI_ABILITY_SOURCE_ID,
+                )
+                for entry in ability_infobox_payload["categories"]
+            ),
+        )
+        wiki_state_rows = []
+        explicit_field_by_category = {
+            str(entry["identifier"]): str(entry["source_field"])
+            for entry in ability_infobox_payload["categories"]
+        }
+        for record in ability_infobox_payload["abilities"]:
+            ability = connection.execute(
+                "SELECT id FROM abilities WHERE identifier = ? AND is_main_series = 1",
+                (str(record["identifier"]),),
+            ).fetchone()
+            if ability is None:
+                raise ValueError(
+                    f"Ability infobox identifier is not in PokeAPI: {record['identifier']}"
+                )
+            ability_id = int(ability["id"])
+            explicit_fields = set(record.get("explicit_fields", []))
+            source_locator = (
+                "https://wiki.52poke.com/index.php?"
+                f"curid={record['page_id']}&oldid={record['revision_id']}"
+            )
+            for category_identifier, state in record["states"].items():
+                if category_identifier not in wiki_categories:
+                    raise ValueError(
+                        f"Unknown ability infobox category: {category_identifier}"
+                    )
+                wiki_state_rows.append(
+                    (
+                        ability_id,
+                        str(category_identifier),
+                        str(state),
+                        int(
+                            explicit_field_by_category[str(category_identifier)]
+                            in explicit_fields
+                        ),
+                        str(ability_infobox_payload["ruleset_scope"]),
+                        source_locator,
+                        WIKI_ABILITY_SOURCE_ID,
+                    )
+                )
+        _insert_many(
+            connection,
+            "INSERT INTO ability_mechanic_states VALUES (?, ?, ?, ?, ?, ?, ?)",
+            wiki_state_rows,
+        )
         _insert_many(
             connection,
             "INSERT OR IGNORE INTO move_effect_prose VALUES (?, ?, ?, ?)",
@@ -1687,6 +2017,100 @@ def build_pilot_database(settings: Settings | None = None) -> dict[str, object]:
                 ),
             )
 
+        battle_state_payload = json.loads(
+            settings.battle_states_path.read_text(encoding="utf-8")
+        )
+        if int(battle_state_payload.get("schema_version", 0)) != 1:
+            raise ValueError("Unsupported battle-state curation schema")
+        if battle_state_payload.get("source_id") != SHOWDOWN_SOURCE_ID:
+            raise ValueError("Battle-state curation must use the pinned Pokemon Showdown source")
+        ruleset_scope = str(battle_state_payload["default_ruleset"])
+        if connection.execute(
+            "SELECT 1 FROM version_groups WHERE identifier = ?", (ruleset_scope,)
+        ).fetchone() is None:
+            raise ValueError(f"Unknown battle-state ruleset: {ruleset_scope}")
+
+        category_ids: set[str] = set()
+        for category in battle_state_payload["categories"]:
+            category_identifier = str(category["identifier"])
+            if category_identifier in category_ids:
+                raise ValueError(f"Duplicate battle-state category: {category_identifier}")
+            category_ids.add(category_identifier)
+            connection.execute(
+                "INSERT INTO battle_state_categories VALUES (?, ?, ?, ?, ?)",
+                (
+                    category_identifier,
+                    category["label_zh"],
+                    category["scope"],
+                    category["description_zh"],
+                    int(category["sort_order"]),
+                ),
+            )
+
+        battle_state_count = 0
+        battle_state_relation_count = 0
+        for state in battle_state_payload["states"]:
+            state_identifier = str(state["identifier"])
+            category_identifier = str(state["category"])
+            if category_identifier not in category_ids:
+                raise ValueError(
+                    f"Unknown category for battle state {state_identifier}: {category_identifier}"
+                )
+            connection.execute(
+                "INSERT INTO battle_states VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    state_identifier,
+                    state["name_zh"],
+                    category_identifier,
+                    state["subcategory"],
+                    state["scope"],
+                    state.get("generation_from"),
+                    state.get("generation_to"),
+                    int(bool(state.get("current", True))),
+                    state["description_zh"],
+                    state["mechanics_zh"],
+                    state.get("counterplay_zh", ""),
+                    json.dumps(state.get("parameters", {}), ensure_ascii=False, sort_keys=True),
+                    ruleset_scope,
+                    state["source_locator"],
+                    SHOWDOWN_SOURCE_ID,
+                ),
+            )
+            battle_state_count += 1
+            aliases = [
+                (state_identifier, "identifier"),
+                (str(state["name_zh"]), "localized_name"),
+                *((str(alias), "curated_alias") for alias in state.get("aliases", [])),
+            ]
+            for alias, alias_kind in aliases:
+                normalized = normalize_alias(alias)
+                if normalized:
+                    connection.execute(
+                        "INSERT OR IGNORE INTO battle_state_aliases VALUES (?, ?, ?, ?)",
+                        (state_identifier, normalized, alias, alias_kind),
+                    )
+            for relation in state.get("relations", []):
+                entity_rows = connection.execute(
+                    "SELECT entity_id FROM entities WHERE entity_type = ? AND identifier = ?",
+                    (relation["entity_type"], relation["identifier"]),
+                ).fetchall()
+                if len(entity_rows) != 1:
+                    raise ValueError(
+                        "Battle-state relation must resolve exactly once: "
+                        f"{state_identifier} -> {relation['entity_type']}:{relation['identifier']}"
+                    )
+                connection.execute(
+                    "INSERT INTO battle_state_relations VALUES (?, ?, ?, ?, ?)",
+                    (
+                        state_identifier,
+                        relation["entity_type"],
+                        int(entity_rows[0][0]),
+                        relation["relation_kind"],
+                        relation.get("note_zh", ""),
+                    ),
+                )
+                battle_state_relation_count += 1
+
         knowledge_payload = json.loads(
             settings.knowledge_passages_path.read_text(encoding="utf-8")
         )
@@ -1798,5 +2222,10 @@ def build_pilot_database(settings: Settings | None = None) -> dict[str, object]:
         "move_mechanic_categories": len(category_by_flag),
         "moves_with_mechanic_coverage": len(coverage_rows),
         "move_mechanic_memberships": len(membership_rows),
+        "ability_mechanic_categories": len(ability_category_by_signal) + len(wiki_categories),
+        "abilities_with_mechanic_coverage": len(ability_coverage_rows),
+        "ability_mechanic_states": len(ability_state_rows) + len(wiki_state_rows),
+        "battle_states": battle_state_count,
+        "battle_state_relations": battle_state_relation_count,
         "database_bytes": output.stat().st_size,
     }
